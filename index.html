@@ -157,846 +157,12 @@
 
             <!-- Tabs -->
             <div class="flex flex-wrap justify-center gap-3 mb-10" id="menu-tabs">
-                <button onclick="filterMenu('all', this)" class="menu-tab active px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-md bg-brand-700 text-white transform scale-105">الكل</button>
-                <button onclick="filterMenu('hot_coffee', this)" class="menu-tab px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-sm bg-white text-gray-600 hover:bg-brand-100">القهوة الساخنة</button>
-                <button onclick="filterMenu('iced_coffee', this)" class="menu-tab px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-sm bg-white text-gray-600 hover:bg-brand-100">القهوة الباردة</button>
-                <button onclick="filterMenu('specialty_coffee', this)" class="menu-tab px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-sm bg-white text-gray-600 hover:bg-brand-100">القهوة المختصة</button>
-                <button onclick="filterMenu('tea', this)" class="menu-tab px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-sm bg-white text-gray-600 hover:bg-brand-100">الشاي</button>
-                <button onclick="filterMenu('cold_drinks', this)" class="menu-tab px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-sm bg-white text-gray-600 hover:bg-brand-100">المشروبات الباردة</button>
-                <button onclick="filterMenu('hot_drinks_other', this)" class="menu-tab px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-sm bg-white text-gray-600 hover:bg-brand-100">مشروبات ساخنة أخرى</button>
-                <button onclick="filterMenu('dessert', this)" class="menu-tab px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-sm bg-white text-gray-600 hover:bg-brand-100">الحلويات</button>
-                <button onclick="filterMenu('bakery', this)" class="menu-tab px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-sm bg-white text-gray-600 hover:bg-brand-100">المخبوزات</button>
+                <!-- Tabs will be injected by JS -->
             </div>
 
             <!-- Menu Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="menu-grid">
-                
-                <!-- Hot Coffee -->
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="hot_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?auto=format&fit=crop&q=80&w=600" alt="إسبريسو">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">إسبريسو</h3>
-                                <span class="text-lg font-bold text-brand-700">10 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="hot_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?auto=format&fit=crop&q=80&w=600" alt="دبل إسبريسو">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">دبل إسبريسو</h3>
-                                <span class="text-lg font-bold text-brand-700">14 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="hot_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1551030173-122aabc4489c?auto=format&fit=crop&q=80&w=600" alt="أمريكانو">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">أمريكانو</h3>
-                                <span class="text-lg font-bold text-brand-700">14 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="hot_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1570968992193-6e5c922e4993?auto=format&fit=crop&q=80&w=600" alt="كافيه لاتيه">
-                        <span class="absolute top-4 right-4 bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">مميز</span>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">كافيه لاتيه</h3>
-                                <span class="text-lg font-bold text-brand-700">18 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="hot_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&q=80&w=600" alt="كابتشينو">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">كابتشينو</h3>
-                                <span class="text-lg font-bold text-brand-700">18 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="hot_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1577968897966-3d4325b36b61?auto=format&fit=crop&q=80&w=600" alt="فلات وايت">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">فلات وايت</h3>
-                                <span class="text-lg font-bold text-brand-700">19 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="hot_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1534040385115-33dcb3acba5b?auto=format&fit=crop&q=80&w=600" alt="كورتادو">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">كورتادو</h3>
-                                <span class="text-lg font-bold text-brand-700">17 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="hot_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&q=80&w=600" alt="موكا">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">موكا</h3>
-                                <span class="text-lg font-bold text-brand-700">20 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="hot_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1585494156145-1c60a4fe952b?auto=format&fit=crop&q=80&w=600" alt="وايت موكا">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">وايت موكا</h3>
-                                <span class="text-lg font-bold text-brand-700">20 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                 <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="hot_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1485808191679-5f8c7c860695?auto=format&fit=crop&q=80&w=600" alt="كراميل ماكياتو">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">كراميل ماكياتو</h3>
-                                <span class="text-lg font-bold text-brand-700">21 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="hot_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1570968992193-6e5c922e4993?auto=format&fit=crop&q=80&w=600" alt="فانيلا لاتيه">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">فانيلا لاتيه</h3>
-                                <span class="text-lg font-bold text-brand-700">21 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="hot_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1570968992193-6e5c922e4993?auto=format&fit=crop&q=80&w=600" alt="هازلنت لاتيه">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">هازلنت لاتيه</h3>
-                                <span class="text-lg font-bold text-brand-700">21 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Iced Coffee -->
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="iced_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1517959105821-eaf259504a55?auto=format&fit=crop&q=80&w=600" alt="آيس أمريكانو">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">آيس أمريكانو</h3>
-                                <span class="text-lg font-bold text-brand-700">15 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="iced_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1517701604599-bb29b5c73312?auto=format&fit=crop&q=80&w=600" alt="آيس لاتيه">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">آيس لاتيه</h3>
-                                <span class="text-lg font-bold text-brand-700">19 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="iced_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1517701604599-bb29b5c73312?auto=format&fit=crop&q=80&w=600" alt="آيس فانيلا لاتيه">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">آيس فانيلا لاتيه</h3>
-                                <span class="text-lg font-bold text-brand-700">22 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="iced_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1620916297397-a4a5402a3c6c?auto=format&fit=crop&q=80&w=600" alt="آيس كراميل لاتيه">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">آيس كراميل لاتيه</h3>
-                                <span class="text-lg font-bold text-brand-700">22 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="iced_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&q=80&w=600" alt="آيس موكا">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">آيس موكا</h3>
-                                <span class="text-lg font-bold text-brand-700">23 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="iced_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&q=80&w=600" alt="آيس وايت موكا">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">آيس وايت موكا</h3>
-                                <span class="text-lg font-bold text-brand-700">23 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="iced_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1625242661157-e7e8d29f074d?auto=format&fit=crop&q=80&w=600" alt="آيس سبانيش لاتيه">
-                        <span class="absolute top-4 right-4 bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">مميز</span>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">آيس سبانيش لاتيه</h3>
-                                <span class="text-lg font-bold text-brand-700">24 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="iced_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1517701604599-bb29b5c73312?auto=format&fit=crop&q=80&w=600" alt="آيس فلات وايت">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">آيس فلات وايت</h3>
-                                <span class="text-lg font-bold text-brand-700">21 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Specialty Coffee -->
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="specialty_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=600" alt="V60">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">V60</h3>
-                                <span class="text-lg font-bold text-brand-700">22 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="specialty_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=600" alt="V60 آيس">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">V60 آيس</h3>
-                                <span class="text-lg font-bold text-brand-700">24 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="specialty_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=600" alt="كيمكس">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">كيمكس</h3>
-                                <span class="text-lg font-bold text-brand-700">25 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="specialty_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1461023058943-716d192f2279?auto=format&fit=crop&q=80&w=600" alt="كولد برو">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">كولد برو</h3>
-                                <span class="text-lg font-bold text-brand-700">24 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="specialty_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1461023058943-716d192f2279?auto=format&fit=crop&q=80&w=600" alt="كولد برو بالحليب">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">كولد برو بالحليب</h3>
-                                <span class="text-lg font-bold text-brand-700">26 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                 <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="specialty_coffee">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=600" alt="قهوة اليوم">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">قهوة اليوم</h3>
-                                <span class="text-lg font-bold text-brand-700">20 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tea -->
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="tea">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?auto=format&fit=crop&q=80&w=600" alt="شاي أحمر">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">شاي أحمر</h3>
-                                <span class="text-lg font-bold text-brand-700">10 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="tea">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1627435601361-ec25f5b1d0e5?auto=format&fit=crop&q=80&w=600" alt="شاي أخضر">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">شاي أخضر</h3>
-                                <span class="text-lg font-bold text-brand-700">10 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="tea">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1587593810167-a6492031e5fd?auto=format&fit=crop&q=80&w=600" alt="شاي مغربي">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">شاي مغربي</h3>
-                                <span class="text-lg font-bold text-brand-700">14 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="tea">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&q=80&w=600" alt="شاي كرك">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">شاي كرك</h3>
-                                <span class="text-lg font-bold text-brand-700">15 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="tea">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&q=80&w=600" alt="شاي أعشاب">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">شاي أعشاب</h3>
-                                <span class="text-lg font-bold text-brand-700">12 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="tea">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&q=80&w=600" alt="شاي زنجبيل">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">شاي زنجبيل</h3>
-                                <span class="text-lg font-bold text-brand-700">12 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                 <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="tea">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&q=80&w=600" alt="شاي ليمون بالعسل">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">شاي ليمون بالعسل</h3>
-                                <span class="text-lg font-bold text-brand-700">14 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Cold Drinks -->
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="cold_drinks">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&q=80&w=600" alt="موهيتو كلاسيك">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">موهيتو كلاسيك</h3>
-                                <span class="text-lg font-bold text-brand-700">18 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="cold_drinks">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&q=80&w=600" alt="موهيتو توت">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">موهيتو توت</h3>
-                                <span class="text-lg font-bold text-brand-700">20 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="cold_drinks">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&q=80&w=600" alt="موهيتو ليمون ونعناع">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">موهيتو ليمون ونعناع</h3>
-                                <span class="text-lg font-bold text-brand-700">18 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="cold_drinks">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&q=80&w=600" alt="آيس تي ليمون">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">آيس تي ليمون</h3>
-                                <span class="text-lg font-bold text-brand-700">15 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="cold_drinks">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&q=80&w=600" alt="آيس تي خوخ">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">آيس تي خوخ</h3>
-                                <span class="text-lg font-bold text-brand-700">16 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="cold_drinks">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=600" alt="آيس شوكولاتة">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">آيس شوكولاتة</h3>
-                                <span class="text-lg font-bold text-brand-700">20 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="cold_drinks">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&q=80&w=600" alt="ميلك شيك فانيلا">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">ميلك شيك فانيلا</h3>
-                                <span class="text-lg font-bold text-brand-700">22 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="cold_drinks">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&q=80&w=600" alt="ميلك شيك شوكولاتة">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">ميلك شيك شوكولاتة</h3>
-                                <span class="text-lg font-bold text-brand-700">22 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="cold_drinks">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&q=80&w=600" alt="ميلك شيك فراولة">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">ميلك شيك فراولة</h3>
-                                <span class="text-lg font-bold text-brand-700">22 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hot Drinks Other -->
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="hot_drinks_other">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1542488246-ad86db6346b6?auto=format&fit=crop&q=80&w=600" alt="هوت شوكليت">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">هوت شوكليت</h3>
-                                <span class="text-lg font-bold text-brand-700">18 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="hot_drinks_other">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1542488246-ad86db6346b6?auto=format&fit=crop&q=80&w=600" alt="هوت شوكليت مع مارشميلو">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">هوت شوكليت مع مارشميلو</h3>
-                                <span class="text-lg font-bold text-brand-700">20 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="hot_drinks_other">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1542488246-ad86db6346b6?auto=format&fit=crop&q=80&w=600" alt="سبانيش شوكليت">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">سبانيش شوكليت</h3>
-                                <span class="text-lg font-bold text-brand-700">22 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                 <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="hot_drinks_other">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1542488246-ad86db6346b6?auto=format&fit=crop&q=80&w=600" alt="شوكولاتة بيضاء ساخنة">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">شوكولاتة بيضاء ساخنة</h3>
-                                <span class="text-lg font-bold text-brand-700">20 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Desserts -->
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="dessert">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&q=80&w=600" alt="تشيزكيك كلاسيك">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">تشيزكيك كلاسيك</h3>
-                                <span class="text-lg font-bold text-brand-700">22 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="dessert">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&q=80&w=600" alt="تشيزكيك توت">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">تشيزكيك توت</h3>
-                                <span class="text-lg font-bold text-brand-700">24 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="dessert">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&q=80&w=600" alt="تشيزكيك شوكولاتة">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">تشيزكيك شوكولاتة</h3>
-                                <span class="text-lg font-bold text-brand-700">24 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="dessert">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&q=80&w=600" alt="براونيز">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">براونيز</h3>
-                                <span class="text-lg font-bold text-brand-700">18 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="dessert">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&q=80&w=600" alt="براونيز مع آيس كريم">
-                        <span class="absolute top-4 right-4 bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">مميز</span>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">براونيز مع آيس كريم</h3>
-                                <span class="text-lg font-bold text-brand-700">22 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="dessert">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1499636138143-bd630f5cf38b?auto=format&fit=crop&q=80&w=600" alt="كوكيز شوكولاتة">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">كوكيز شوكولاتة</h3>
-                                <span class="text-lg font-bold text-brand-700">10 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="dessert">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1499636138143-bd630f5cf38b?auto=format&fit=crop&q=80&w=600" alt="كوكيز شوفان">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">كوكيز شوفان</h3>
-                                <span class="text-lg font-bold text-brand-700">10 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="dessert">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=600" alt="كرواسون سادة">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">كرواسون سادة</h3>
-                                <span class="text-lg font-bold text-brand-700">9 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="dessert">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=600" alt="كرواسون شوكولاتة">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">كرواسون شوكولاتة</h3>
-                                <span class="text-lg font-bold text-brand-700">12 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="dessert">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=600" alt="كرواسون جبن">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">كرواسون جبن</h3>
-                                <span class="text-lg font-bold text-brand-700">12 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bakery -->
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="bakery">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&q=80&w=600" alt="مافن شوكولاتة">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">مافن شوكولاتة</h3>
-                                <span class="text-lg font-bold text-brand-700">12 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="bakery">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&q=80&w=600" alt="مافن فانيلا">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">مافن فانيلا</h3>
-                                <span class="text-lg font-bold text-brand-700">12 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="bakery">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&q=80&w=600" alt="مافن توت">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">مافن توت</h3>
-                                <span class="text-lg font-bold text-brand-700">13 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="bakery">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&fit=crop&q=80&w=600" alt="سينابون">
-                        <span class="absolute top-4 right-4 bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">مميز</span>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">سينابون</h3>
-                                <span class="text-lg font-bold text-brand-700">15 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="bakery">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1584776296906-6af761f60ca4?auto=format&fit=crop&q=80&w=600" alt="توست جبن">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">توست جبن</h3>
-                                <span class="text-lg font-bold text-brand-700">14 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="bakery">
-                    <div class="relative h-56 overflow-hidden">
-                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1584776296906-6af761f60ca4?auto=format&fit=crop&q=80&w=600" alt="توست تركي">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold text-gray-900">توست تركي</h3>
-                                <span class="text-lg font-bold text-brand-700">14 ريال</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                <!-- Items will be injected by JS -->
             </div>
         </div>
     </div>
@@ -1144,13 +310,161 @@
         <div class="max-w-7xl mx-auto px-4 text-center">
             <p class="font-bold text-lg">فقيه كوفي</p>
             <p class="text-sm text-brand-400 mt-1">جميع الحقوق محفوظة © 2024</p>
+            <a href="admin.html" class="text-xs text-brand-800 mt-2 block hover:text-brand-600">تسجيل دخول الموظفين</a>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script>
+        // Data Initialization
+        const DEFAULT_CATEGORIES = [
+          { id: 'all', name: 'الكل' },
+          { id: 'hot_coffee', name: 'القهوة الساخنة' },
+          { id: 'iced_coffee', name: 'القهوة الباردة' },
+          { id: 'specialty_coffee', name: 'القهوة المختصة' },
+          { id: 'tea', name: 'الشاي' },
+          { id: 'cold_drinks', name: 'المشروبات الباردة' },
+          { id: 'hot_drinks_other', name: 'مشروبات ساخنة أخرى' },
+          { id: 'dessert', name: 'الحلويات' },
+          { id: 'bakery', name: 'المخبوزات' },
+        ];
+
+        const DEFAULT_MENU_ITEMS = [
+          // Hot Coffee
+          { id: 'hc1', name: 'إسبريسو', description: 'شوت قهوة مركز وغني', price: '10 ريال', category: 'hot_coffee', image: 'https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'hc2', name: 'دبل إسبريسو', description: 'جرعة مزدوجة من القهوة المركزة', price: '14 ريال', category: 'hot_coffee', image: 'https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'hc3', name: 'أمريكانو', description: 'إسبريسو مخفف بالماء الساخن', price: '14 ريال', category: 'hot_coffee', image: 'https://images.unsplash.com/photo-1551030173-122aabc4489c?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'hc4', name: 'كافيه لاتيه', description: 'إسبريسو مع حليب مبخر ورغوة خفيفة', price: '18 ريال', category: 'hot_coffee', image: 'https://images.unsplash.com/photo-1570968992193-6e5c922e4993?auto=format&fit=crop&q=80&w=600', popular: true, available: true },
+          { id: 'hc5', name: 'كابتشينو', description: 'توازن مثالي بين الاسبريسو والحليب والرغوة الكثيفة', price: '18 ريال', category: 'hot_coffee', image: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'hc6', name: 'فلات وايت', description: 'إسبريسو مركز مع طبقة رقيقة من الحليب المبخر', price: '19 ريال', category: 'hot_coffee', image: 'https://images.unsplash.com/photo-1577968897966-3d4325b36b61?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'hc7', name: 'كورتادو', description: 'كمية متساوية من الإسبريسو والحليب المبخر', price: '17 ريال', category: 'hot_coffee', image: 'https://images.unsplash.com/photo-1534040385115-33dcb3acba5b?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'hc8', name: 'موكا', description: 'إسبريسو مع الحليب والشوكولاتة', price: '20 ريال', category: 'hot_coffee', image: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'hc9', name: 'وايت موكا', description: 'إسبريسو مع الحليب والشوكولاتة البيضاء', price: '20 ريال', category: 'hot_coffee', image: 'https://images.unsplash.com/photo-1585494156145-1c60a4fe952b?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'hc10', name: 'كراميل ماكياتو', description: 'إسبريسو مع الحليب ونكهة الكراميل', price: '21 ريال', category: 'hot_coffee', image: 'https://images.unsplash.com/photo-1485808191679-5f8c7c860695?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'hc11', name: 'فانيلا لاتيه', description: 'لاتيه كلاسيكي مع نكهة الفانيلا', price: '21 ريال', category: 'hot_coffee', image: 'https://images.unsplash.com/photo-1570968992193-6e5c922e4993?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'hc12', name: 'هازلنت لاتيه', description: 'لاتيه كلاسيكي مع نكهة البندق', price: '21 ريال', category: 'hot_coffee', image: 'https://images.unsplash.com/photo-1570968992193-6e5c922e4993?auto=format&fit=crop&q=80&w=600', available: true },
+
+          // Iced Coffee
+          { id: 'ic1', name: 'آيس أمريكانو', description: 'إسبريسو مع ماء وثلج', price: '15 ريال', category: 'iced_coffee', image: 'https://images.unsplash.com/photo-1517959105821-eaf259504a55?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'ic2', name: 'آيس لاتيه', description: 'إسبريسو وحليب بارد مع ثلج', price: '19 ريال', category: 'iced_coffee', image: 'https://images.unsplash.com/photo-1517701604599-bb29b5c73312?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'ic3', name: 'آيس فانيلا لاتيه', description: 'لاتيه بارد بنكهة الفانيلا', price: '22 ريال', category: 'iced_coffee', image: 'https://images.unsplash.com/photo-1517701604599-bb29b5c73312?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'ic4', name: 'آيس كراميل لاتيه', description: 'لاتيه بارد بصوص الكراميل', price: '22 ريال', category: 'iced_coffee', image: 'https://images.unsplash.com/photo-1620916297397-a4a5402a3c6c?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'ic5', name: 'آيس موكا', description: 'مزيج بارد من القهوة والشوكولاتة', price: '23 ريال', category: 'iced_coffee', image: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'ic6', name: 'آيس وايت موكا', description: 'موكا باردة بالشوكولاتة البيضاء', price: '23 ريال', category: 'iced_coffee', image: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'ic7', name: 'آيس سبانيش لاتيه', description: 'المشروب المفضل، حليب مكثف وقهوة باردة', price: '24 ريال', category: 'iced_coffee', image: 'https://images.unsplash.com/photo-1625242661157-e7e8d29f074d?auto=format&fit=crop&q=80&w=600', popular: true, available: true },
+          { id: 'ic8', name: 'آيس فلات وايت', description: 'نسخة باردة من الفلات وايت الكلاسيكي', price: '21 ريال', category: 'iced_coffee', image: 'https://images.unsplash.com/photo-1517701604599-bb29b5c73312?auto=format&fit=crop&q=80&w=600', available: true },
+
+          // Specialty Coffee
+          { id: 'sc1', name: 'V60', description: 'قهوة مقطرة يدوياً (ساخن)', price: '22 ريال', category: 'specialty_coffee', image: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'sc2', name: 'V60 آيس', description: 'قهوة مقطرة يدوياً على الثلج', price: '24 ريال', category: 'specialty_coffee', image: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'sc3', name: 'كيمكس', description: 'قهوة مقطرة بوعاء كيمكس الزجاجي', price: '25 ريال', category: 'specialty_coffee', image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'sc4', name: 'كولد برو', description: 'قهوة منقعة بالماء البارد لمدة طويلة', price: '24 ريال', category: 'specialty_coffee', image: 'https://images.unsplash.com/photo-1461023058943-716d192f2279?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'sc5', name: 'كولد برو بالحليب', description: 'كولد برو مضاف إليه الحليب', price: '26 ريال', category: 'specialty_coffee', image: 'https://images.unsplash.com/photo-1461023058943-716d192f2279?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'sc6', name: 'قهوة اليوم', description: 'قهوة سوداء طازجة التحضير', price: '20 ريال', category: 'specialty_coffee', image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=600', available: true },
+
+          // Tea
+          { id: 'tea1', name: 'شاي أحمر', description: 'شاي أسود كلاسيكي', price: '10 ريال', category: 'tea', image: 'https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'tea2', name: 'شاي أخضر', description: 'شاي أخضر صحي', price: '10 ريال', category: 'tea', image: 'https://images.unsplash.com/photo-1627435601361-ec25f5b1d0e5?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'tea3', name: 'شاي مغربي', description: 'شاي أخضر بالنعناع', price: '14 ريال', category: 'tea', image: 'https://images.unsplash.com/photo-1587593810167-a6492031e5fd?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'tea4', name: 'شاي كرك', description: 'شاي بالحليب والهيل والبهارات', price: '15 ريال', category: 'tea', image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'tea5', name: 'شاي أعشاب', description: 'مزيج من الأعشاب الطبيعية', price: '12 ريال', category: 'tea', image: 'https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'tea6', name: 'شاي زنجبيل', description: 'شاي ساخن بالزنجبيل الطازج', price: '12 ريال', category: 'tea', image: 'https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'tea7', name: 'شاي ليمون بالعسل', description: 'مشروب دافئ ومهدئ', price: '14 ريال', category: 'tea', image: 'https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&q=80&w=600', available: true },
+
+          // Cold Drinks
+          { id: 'cd1', name: 'موهيتو كلاسيك', description: 'ليمون ونعناع وصودا', price: '18 ريال', category: 'cold_drinks', image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'cd2', name: 'موهيتو توت', description: 'نكهة التوت المنعشة مع الصودا', price: '20 ريال', category: 'cold_drinks', image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'cd3', name: 'موهيتو ليمون ونعناع', description: 'مزيج منعش من الليمون والنعناع', price: '18 ريال', category: 'cold_drinks', image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'cd4', name: 'آيس تي ليمون', description: 'شاي مثلج بنكهة الليمون', price: '15 ريال', category: 'cold_drinks', image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'cd5', name: 'آيس تي خوخ', description: 'شاي مثلج بنكهة الخوخ', price: '16 ريال', category: 'cold_drinks', image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'cd6', name: 'آيس شوكولاتة', description: 'مشروب الشوكولاتة البارد', price: '20 ريال', category: 'cold_drinks', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'cd7', name: 'ميلك شيك فانيلا', description: 'ميلك شيك كلاسيكي غني', price: '22 ريال', category: 'cold_drinks', image: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'cd8', name: 'ميلك شيك شوكولاتة', description: 'لعشاق الشوكولاتة', price: '22 ريال', category: 'cold_drinks', image: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'cd9', name: 'ميلك شيك فراولة', description: 'ميلك شيك بنكهة الفراولة الطبيعية', price: '22 ريال', category: 'cold_drinks', image: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&q=80&w=600', available: true },
+
+          // Hot Drinks (Other)
+          { id: 'hd1', name: 'هوت شوكليت', description: 'شوكولاتة ساخنة غنية', price: '18 ريال', category: 'hot_drinks_other', image: 'https://images.unsplash.com/photo-1542488246-ad86db6346b6?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'hd2', name: 'هوت شوكليت مع مارشميلو', description: 'مع قطع المارشميلو اللذيذة', price: '20 ريال', category: 'hot_drinks_other', image: 'https://images.unsplash.com/photo-1542488246-ad86db6346b6?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'hd3', name: 'سبانيش شوكليت', description: 'شوكولاتة ساخنة على الطريقة الإسبانية', price: '22 ريال', category: 'hot_drinks_other', image: 'https://images.unsplash.com/photo-1542488246-ad86db6346b6?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'hd4', name: 'شوكولاتة بيضاء ساخنة', description: 'مشروب دافئ بالشوكولاتة البيضاء', price: '20 ريال', category: 'hot_drinks_other', image: 'https://images.unsplash.com/photo-1542488246-ad86db6346b6?auto=format&fit=crop&q=80&w=600', available: true },
+
+          // Desserts
+          { id: 'ds1', name: 'تشيزكيك كلاسيك', description: 'تشيز كيك نيويورك الأصلي', price: '22 ريال', category: 'dessert', image: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'ds2', name: 'تشيزكيك توت', description: 'مغطى بصوص التوت البري', price: '24 ريال', category: 'dessert', image: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'ds3', name: 'تشيزكيك شوكولاتة', description: 'غني بالشوكولاتة الفاخرة', price: '24 ريال', category: 'dessert', image: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'ds4', name: 'براونيز', description: 'قطعة براونيز غنية بالشوكولاتة', price: '18 ريال', category: 'dessert', image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'ds5', name: 'براونيز مع آيس كريم', description: 'تقدم ساخنة مع كرة آيس كريم', price: '22 ريال', category: 'dessert', image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&q=80&w=600', popular: true, available: true },
+          { id: 'ds6', name: 'كوكيز شوكولاتة', description: 'كوكيز طازج بقطع الشوكولاتة', price: '10 ريال', category: 'dessert', image: 'https://images.unsplash.com/photo-1499636138143-bd630f5cf38b?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'ds7', name: 'كوكيز شوفان', description: 'خيار صحي ولذيذ', price: '10 ريال', category: 'dessert', image: 'https://images.unsplash.com/photo-1499636138143-bd630f5cf38b?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'ds8', name: 'كرواسون سادة', description: 'مخبوز طازج بالزبدة', price: '9 ريال', category: 'dessert', image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'ds9', name: 'كرواسون شوكولاتة', description: 'محشو بالشوكولاتة الغنية', price: '12 ريال', category: 'dessert', image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'ds10', name: 'كرواسون جبن', description: 'هش ومحشو بالجبن', price: '12 ريال', category: 'dessert', image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=600', available: true },
+
+          // Bakery
+          { id: 'bk1', name: 'مافن شوكولاتة', description: 'كيك مافن طري وغني', price: '12 ريال', category: 'bakery', image: 'https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'bk2', name: 'مافن فانيلا', description: 'بنكهة الفانيلا الناعمة', price: '12 ريال', category: 'bakery', image: 'https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'bk3', name: 'مافن توت', description: 'محشو بقطع التوت', price: '13 ريال', category: 'bakery', image: 'https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'bk4', name: 'سينابون', description: 'لفائف القرفة مع الصوص الأبيض', price: '15 ريال', category: 'bakery', image: 'https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&fit=crop&q=80&w=600', popular: true, available: true },
+          { id: 'bk5', name: 'توست جبن', description: 'محمص ومحشو بالجبن الذائب', price: '14 ريال', category: 'bakery', image: 'https://images.unsplash.com/photo-1584776296906-6af761f60ca4?auto=format&fit=crop&q=80&w=600', available: true },
+          { id: 'bk6', name: 'توست تركي', description: 'توست مع الديك الرومي والجبن', price: '14 ريال', category: 'bakery', image: 'https://images.unsplash.com/photo-1584776296906-6af761f60ca4?auto=format&fit=crop&q=80&w=600', available: true },
+        ];
+
+        // Load data from LocalStorage or use defaults
+        function loadData() {
+            const savedCategories = localStorage.getItem('fakieh_categories');
+            const savedItems = localStorage.getItem('fakieh_menu_items');
+            
+            return {
+                categories: savedCategories ? JSON.parse(savedCategories) : DEFAULT_CATEGORIES,
+                items: savedItems ? JSON.parse(savedItems) : DEFAULT_MENU_ITEMS
+            };
+        }
+
+        const { categories, items } = loadData();
+
         // Initialize Icons
         lucide.createIcons();
+
+        // Render Tabs
+        const tabsContainer = document.getElementById('menu-tabs');
+        categories.forEach(cat => {
+            const btn = document.createElement('button');
+            btn.textContent = cat.name;
+            btn.className = `menu-tab px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-sm ${cat.id === 'all' ? 'bg-brand-700 text-white shadow-md transform scale-105 active' : 'bg-white text-gray-600 hover:bg-brand-100'}`;
+            btn.onclick = () => filterMenu(cat.id, btn);
+            tabsContainer.appendChild(btn);
+        });
+
+        // Render Items
+        const gridContainer = document.getElementById('menu-grid');
+        items.forEach(item => {
+            if (!item.available) return; // Optional: Hide unavailable items or show as sold out
+
+            const el = document.createElement('div');
+            el.className = `menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col fade-in`;
+            el.dataset.category = item.category;
+            
+            el.innerHTML = `
+                <div class="relative h-56 overflow-hidden">
+                    <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="${item.image}" alt="${item.name}">
+                    ${item.popular ? '<span class="absolute top-4 right-4 bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">مميز</span>' : ''}
+                    ${item.originalPrice ? '<span class="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg animate-pulse">عرض</span>' : ''}
+                </div>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-900">${item.name}</h3>
+                            <div class="flex flex-col items-end">
+                                <span class="text-lg font-bold text-brand-700">${item.price}</span>
+                                ${item.originalPrice ? `<span class="text-sm text-gray-400 line-through">${item.originalPrice}</span>` : ''}
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed">${item.description}</p>
+                    </div>
+                </div>
+            `;
+            gridContainer.appendChild(el);
+        });
 
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -1164,15 +478,15 @@
         function filterMenu(category, btn) {
             // Update buttons state
             document.querySelectorAll('.menu-tab').forEach(b => {
-                b.classList.remove('bg-brand-700', 'text-white', 'shadow-md', 'transform', 'scale-105');
+                b.classList.remove('bg-brand-700', 'text-white', 'shadow-md', 'transform', 'scale-105', 'active');
                 b.classList.add('bg-white', 'text-gray-600', 'hover:bg-brand-100');
             });
             btn.classList.remove('bg-white', 'text-gray-600', 'hover:bg-brand-100');
-            btn.classList.add('bg-brand-700', 'text-white', 'shadow-md', 'transform', 'scale-105');
+            btn.classList.add('bg-brand-700', 'text-white', 'shadow-md', 'transform', 'scale-105', 'active');
 
             // Filter items
-            const items = document.querySelectorAll('.menu-item');
-            items.forEach(item => {
+            const itemsEls = document.querySelectorAll('.menu-item');
+            itemsEls.forEach(item => {
                 if (category === 'all' || item.dataset.category === category) {
                     item.style.display = 'flex';
                     item.classList.add('fade-in');
