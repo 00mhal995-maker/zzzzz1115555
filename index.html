@@ -406,7 +406,7 @@
         // UPDATED MENU ITEMS WITH WORKING UNSPLASH IMAGES FOR ALL
         const DEFAULT_MENU_ITEMS = [
             // Breakfast & Sides
-            { id: 'bf1', name: 'فطور فقيه', description: 'Fakieh Breakfast - 860 سعرة', price: '56', category: 'breakfast', image: 'https://images.unsplash.com/photo-1542296531-127271b404bf?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'bf1', name: 'فطور فقيه', description: 'Fakieh Breakfast - 860 سعرة', price: '56', category: 'breakfast', image: '', available: true },
             { id: 'bf2', name: 'كرواسون جبنة', description: 'Cheese Croissant - 385 سعرة', price: '15', category: 'breakfast', image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=600', available: true },
             { id: 'bf3', name: 'كرواسون سادة', description: 'Plain Croissant - 230 سعرة', price: '13', category: 'breakfast', image: 'https://images.unsplash.com/photo-1623334044303-241021148842?auto=format&fit=crop&q=80&w=600', available: true },
             { id: 'bf4', name: 'كرواسون بالبيض', description: 'Egg Croissant - 560 سعرة', price: '19', category: 'breakfast', image: 'https://images.unsplash.com/photo-1510629954389-c1e0da47d414?auto=format&fit=crop&q=80&w=600', available: true },
@@ -467,21 +467,21 @@
             { id: 'ds25', name: 'إضافة أيس كريم', description: 'Add Ice Cream - 50 سعرة', price: '5', category: 'dessert', image: 'https://images.unsplash.com/photo-1505394033641-40c6ad1178d7?auto=format&fit=crop&q=80&w=600', available: true },
 
             // Hot Drinks
-            { id: 'hd1', name: 'إسبريسو', description: 'Espresso - 1.5 سعرة', price: '11', category: 'hot_drinks', image: 'https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'hd2', name: 'إسبريسو دابل', description: 'Double Espresso - 3 سعرة', price: '15', category: 'hot_drinks', image: 'https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'hd3', name: 'ميكاتو', description: 'Macchiato - 280 سعرة', price: '19', category: 'hot_drinks', image: 'https://images.unsplash.com/photo-1534040385115-33dcb3acba5b?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'hd4', name: 'كراميل ميكاتو', description: 'Caramel Macchiato - 470 سعرة', price: '19', category: 'hot_drinks', image: 'https://images.unsplash.com/photo-1485808191679-5f8c7c860695?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'hd5', name: 'كورتادو', description: 'Cortado - 37 سعرة', price: '19', category: 'hot_drinks', image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'hd6', name: 'فلات وايت', description: 'Flat White - 90 سعرة', price: '19', category: 'hot_drinks', image: 'https://images.unsplash.com/photo-1577968897966-3d4325b36b61?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'hd7', name: 'كابتشينو', description: 'Cappuccino - 130 سعرة', price: '19', category: 'hot_drinks', image: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'hd8', name: 'هوت شوكليت', description: 'Hot Chocolate - 400 سعرة', price: '20', category: 'hot_drinks', image: 'https://images.unsplash.com/photo-1542488246-ad86db6346b6?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'hd9', name: 'قهوة تركي', description: 'Turkish Coffee - 7 سعرة', price: '13', category: 'hot_drinks', image: 'https://images.unsplash.com/photo-1596568149818-7b9487c96362?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'hd10', name: 'قهوة تركي دابل', description: 'Double Turkish Coffee - 14 سعرة', price: '18', category: 'hot_drinks', image: 'https://images.unsplash.com/photo-1596568149818-7b9487c96362?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'hd11', name: 'قهوة بحليب', description: 'French Coffee - 100 سعرة', price: '17', category: 'hot_drinks', image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'hd12', name: 'أمريكانو', description: 'Americano - 5 سعرة', price: '17', category: 'hot_drinks', image: 'https://images.unsplash.com/photo-1551030173-122aabc4489c?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'hd13', name: 'V60', description: 'V60 Drip Coffee - 19 سعرة', price: '18', category: 'hot_drinks', image: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'hd14', name: 'ماتشا', description: 'Matcha - 24 سعرة', price: '22', category: 'hot_drinks', image: 'https://images.unsplash.com/photo-1582793988951-9aed5509eb97?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'hd15', name: 'سبانش لاتيه', description: 'Spanish latte - 100 سعرة', price: '17', category: 'hot_drinks', image: 'https://images.unsplash.com/photo-1625242661157-e7e8d29f074d?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'hd1', name: 'إسبريسو', description: 'Espresso - 1.5 سعرة', price: '11', category: 'hot_drinks', image: './img/_Espress.png', available: true },
+            { id: 'hd2', name: 'إسبريسو دابل', description: 'Double Espresso - 3 سعرة', price: '15', category: 'hot_drinks', image: './img/2espr.png', available: true },
+            { id: 'hd3', name: 'ميكاتو', description: 'Macchiato - 280 سعرة', price: '19', category: 'hot_drinks', image: './img/macchiato.png', available: true },
+            { id: 'hd4', name: 'كراميل ميكاتو', description: 'Caramel Macchiato - 470 سعرة', price: '19', category: 'hot_drinks', image: './img/caramelmacchiato.png', available: true },
+            { id: 'hd5', name: 'كورتادو', description: 'Cortado - 37 سعرة', price: '19', category: 'hot_drinks', image: './img/cortado.png', available: true }, 
+            { id: 'hd6', name: 'فلات وايت', description: 'Flat White - 90 سعرة', price: '19', category: 'hot_drinks', image: './img/flatwhite.png', available: true },
+            { id: 'hd7', name: 'كابتشينو', description: 'Cappuccino - 130 سعرة', price: '19', category: 'hot_drinks', image: './img/cappuccino.png', available: true },
+            { id: 'hd8', name: 'هوت شوكليت', description: 'Hot Chocolate - 400 سعرة', price: '20', category: 'hot_drinks', image: './img/hotchocolate.png', available: true },
+            { id: 'hd9', name: 'قهوة تركي', description: 'Turkish Coffee - 7 سعرة', price: '13', category: 'hot_drinks', image: './img/turkish.png', available: true },
+            { id: 'hd10', name: 'قهوة تركي دابل', description: 'Double Turkish Coffee - 14 سعرة', price: '18', category: 'hot_drinks', image: './img/doubleturkish.png', available: true },
+            { id: 'hd11', name: 'قهوة بحليب', description: 'French Coffee - 100 سعرة', price: '17', category: 'hot_drinks', image: './img/frenchcoffee.png', available: true },
+            { id: 'hd12', name: 'أمريكانو', description: 'Americano - 5 سعرة', price: '17', category: 'hot_drinks', image: './img/americano.png', available: true },
+            { id: 'hd13', name: 'V60', description: 'V60 Drip Coffee - 19 سعرة', price: '18', category: 'hot_drinks', image: './img/v60.png', available: true }, 
+            { id: 'hd14', name: 'ماتشا', description: 'Matcha - 24 سعرة', price: '22', category: 'hot_drinks', image: './img/matcha.png', available: true },
+            { id: 'hd15', name: 'سبانش لاتيه', description: 'Spanish latte - 100 سعرة', price: '17', category: 'hot_drinks', image: './img/spanish latte.png', available: true },
 
             // Tea & Pots
             { id: 'tea1', name: 'شاهي أحمر', description: 'Black Tea - 5 سعرة', price: '9', category: 'tea_pots', image: 'https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?auto=format&fit=crop&q=80&w=600', available: true },
