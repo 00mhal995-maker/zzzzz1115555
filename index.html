@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fakieh Coffee | فقيه كوفي</title>
+    <meta name="description" content="فقيه كوفي - تجربة قهوة مميزة مع إطلالة ساحرة على كورنيش جدة.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Cairo', 'sans-serif'],
+              serif: ['Tajawal', 'serif'],
+            },
+            colors: {
+              brand: {
+                50: '#F9F7F5',
+                100: '#F2EBE5',
+                200: '#E6D6C9',
+                300: '#D5C0A7',
+                400: '#C59D5F',
+                500: '#A67C52', 
+                600: '#8C6239',
+                700: '#5D4037',
+                800: '#3E2723',
+                900: '#2C1810',
+                950: '#1A0F0A',
+              }
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #F9F7F5; }
+      ::-webkit-scrollbar-thumb { background: #C59D5F; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #A67C52; }
+      body { background-color: #F9F7F5; color: #2C1810; scroll-behavior: smooth; }
+      .fade-in { animation: fadeIn 0.5s ease-in; }
+      @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+      .menu-item-hidden { display: none; }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.3",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "@google/genai": "https://esm.sh/@google/genai@^1.40.0",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4"
+  }
+}
+</script>
+</head>
+<body class="font-sans">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-brand-900 shadow-lg border-b border-brand-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer gap-3" onclick="window.scrollTo(0,0)">
+                    <div class="bg-brand-400 p-2 rounded-full">
+                        <i data-lucide="coffee" class="h-6 w-6 text-brand-900"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold text-brand-50 tracking-wide font-serif">فقيه كوفي</h1>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-6 space-x-reverse items-center text-brand-100">
+                    <a href="#home" class="hover:text-brand-400 transition-colors">الرئيسية</a>
+                    <a href="#menu" class="hover:text-brand-400 transition-colors">القائمة</a>
+                    <a href="#about" class="hover:text-brand-400 transition-colors">من نحن</a>
+                    <a href="#gallery" class="hover:text-brand-400 transition-colors">المعرض</a>
+                    <a href="#reviews" class="hover:text-brand-400 transition-colors">الآراء</a>
+                    <a href="#contact" class="hover:text-brand-400 transition-colors">تواصل معنا</a>
+                    
+                    <a href="https://maps.app.goo.gl/mosMytBzG9XGPsZC9" target="_blank" class="mr-4 bg-brand-400 hover:bg-white text-brand-900 px-5 py-2 rounded-full font-bold transition-all duration-300 flex items-center gap-2 transform hover:scale-105">
+                        <i data-lucide="map-pin" class="h-4 w-4"></i>
+                        زورنا الآن
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-brand-100 hover:text-brand-400 focus:outline-none p-2">
+                        <i data-lucide="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-800 border-t border-brand-700">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-right">
+                <a href="#home" class="block text-brand-100 hover:bg-brand-700 px-3 py-2 rounded-md font-medium">الرئيسية</a>
+                <a href="#menu" class="block text-brand-100 hover:bg-brand-700 px-3 py-2 rounded-md font-medium">القائمة</a>
+                <a href="#about" class="block text-brand-100 hover:bg-brand-700 px-3 py-2 rounded-md font-medium">من نحن</a>
+                <a href="#gallery" class="block text-brand-100 hover:bg-brand-700 px-3 py-2 rounded-md font-medium">المعرض</a>
+                <a href="#contact" class="block text-brand-100 hover:bg-brand-700 px-3 py-2 rounded-md font-medium">تواصل معنا</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div id="home" class="relative bg-brand-900 overflow-hidden h-[85vh] flex items-center">
+        <div class="absolute inset-0">
+            <img class="w-full h-full object-cover opacity-50" src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&q=80&w=2000" alt="Coffee Background">
+            <div class="absolute inset-0 bg-gradient-to-l from-brand-900/90 via-brand-900/50 to-transparent"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="max-w-2xl">
+                <h1 class="text-5xl font-extrabold tracking-tight text-brand-50 sm:text-6xl lg:text-7xl mb-6 font-serif leading-tight">
+                    فقيه كوفي <br>
+                    <span class="text-brand-400 text-4xl sm:text-5xl lg:text-6xl font-sans">قهوتك اليومية بذوق فاخر</span>
+                </h1>
+                <p class="mt-4 text-xl text-brand-100 leading-relaxed mb-10 max-w-lg">
+                    تجربة استثنائية تجمع بين أصالة القهوة المختصة وفخامة المكان. ندعوك للاستمتاع بكل رشفة في أجواء مصممة خصيصاً لراحتك.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#menu" class="inline-flex justify-center items-center px-8 py-4 border border-transparent text-lg font-bold rounded-full shadow-lg text-brand-900 bg-brand-400 hover:bg-white transition-all duration-300 transform hover:-translate-y-1">
+                        استعرض القائمة
+                        <i data-lucide="arrow-left" class="mr-2 h-5 w-5"></i>
+                    </a>
+                    <a href="https://maps.app.goo.gl/mosMytBzG9XGPsZC9" target="_blank" class="inline-flex justify-center items-center px-8 py-4 border-2 border-brand-200 text-lg font-bold rounded-full text-brand-100 hover:bg-brand-800 transition-all duration-300">
+                        الموقع على الخريطة
+                        <i data-lucide="map-pin" class="mr-2 h-5 w-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Section -->
+    <div id="menu" class="py-12 bg-brand-50 min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 className="text-brand-400 font-bold tracking-widest uppercase mb-2">القائمة</h2>
+                <h3 class="text-3xl font-extrabold text-brand-900 sm:text-4xl">قائمة الطعام</h3>
+                <p class="mt-4 text-lg text-gray-500">اختر ما يناسب ذوقك من تشكيلتنا المميزة</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10" id="menu-tabs">
+                <button onclick="filterMenu('all', this)" class="menu-tab active px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-md bg-brand-700 text-white transform scale-105">الكل</button>
+                <button onclick="filterMenu('hot_coffee', this)" class="menu-tab px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-sm bg-white text-gray-600 hover:bg-brand-100">القهوة الساخنة</button>
+                <button onclick="filterMenu('iced_coffee', this)" class="menu-tab px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-sm bg-white text-gray-600 hover:bg-brand-100">القهوة الباردة</button>
+                <button onclick="filterMenu('specialty_coffee', this)" class="menu-tab px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-sm bg-white text-gray-600 hover:bg-brand-100">القهوة المختصة</button>
+                <button onclick="filterMenu('dessert', this)" class="menu-tab px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 shadow-sm bg-white text-gray-600 hover:bg-brand-100">الحلويات</button>
+            </div>
+
+            <!-- Menu Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="menu-grid">
+                <!-- Items will be generated here by JS for easier management, or we can hardcode them for pure HTML -->
+                <!-- Hardcoding a few examples for immediate display, JS will handle filtering -->
+                
+                <!-- Hot Coffee -->
+                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="hot_coffee">
+                    <div class="relative h-56 overflow-hidden">
+                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1570968992193-6e5c922e4993?auto=format&fit=crop&q=80&w=600" alt="كافيه لاتيه">
+                        <span class="absolute top-4 right-4 bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">مميز</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold text-gray-900">كافيه لاتيه</h3>
+                                <span class="text-lg font-bold text-brand-700">18 ريال</span>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed">إسبريسو مع حليب مبخر ورغوة خفيفة</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="hot_coffee">
+                    <div class="relative h-56 overflow-hidden">
+                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&q=80&w=600" alt="كابتشينو">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold text-gray-900">كابتشينو</h3>
+                                <span class="text-lg font-bold text-brand-700">18 ريال</span>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed">توازن مثالي بين الاسبريسو والحليب والرغوة الكثيفة</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Iced Coffee -->
+                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="iced_coffee">
+                    <div class="relative h-56 overflow-hidden">
+                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1625242661157-e7e8d29f074d?auto=format&fit=crop&q=80&w=600" alt="سبانيش لاتيه">
+                        <span class="absolute top-4 right-4 bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">مميز</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold text-gray-900">آيس سبانيش لاتيه</h3>
+                                <span class="text-lg font-bold text-brand-700">24 ريال</span>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed">المشروب المفضل، حليب مكثف وقهوة باردة</p>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="iced_coffee">
+                    <div class="relative h-56 overflow-hidden">
+                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1517701604599-bb29b5c73312?auto=format&fit=crop&q=80&w=600" alt="ايس لاتيه">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold text-gray-900">آيس لاتيه</h3>
+                                <span class="text-lg font-bold text-brand-700">19 ريال</span>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed">إسبريسو وحليب بارد مع ثلج</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Specialty Coffee -->
+                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="specialty_coffee">
+                    <div class="relative h-56 overflow-hidden">
+                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=600" alt="V60">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold text-gray-900">V60</h3>
+                                <span class="text-lg font-bold text-brand-700">22 ريال</span>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed">قهوة مقطرة يدوياً</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dessert -->
+                <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="dessert">
+                    <div class="relative h-56 overflow-hidden">
+                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&q=80&w=600" alt="تشيزكيك">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold text-gray-900">تشيزكيك كلاسيك</h3>
+                                <span class="text-lg font-bold text-brand-700">22 ريال</span>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed">تشيز كيك نيويورك الأصلي</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="menu-item group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-brand-100 flex flex-col" data-category="dessert">
+                    <div class="relative h-56 overflow-hidden">
+                        <img class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&q=80&w=600" alt="براونيز">
+                         <span class="absolute top-4 right-4 bg-brand-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">مميز</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold text-gray-900">براونيز مع آيس كريم</h3>
+                                <span class="text-lg font-bold text-brand-700">22 ريال</span>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed">تقدم ساخنة مع كرة آيس كريم</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div id="about" class="bg-brand-50 py-20 border-t border-brand-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-brand-400 font-bold tracking-widest uppercase mb-2">من نحن</h2>
+                <h3 class="text-4xl font-extrabold text-brand-900 font-serif">قصة فقيه كوفي</h3>
+                <div class="h-1 w-24 bg-brand-400 mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <div class="lg:grid lg:grid-cols-2 lg:gap-20 items-center">
+                <div class="text-brand-700 text-justify">
+                    <p class="mb-6 text-xl leading-relaxed">
+                        على ضفاف كورنيش جدة الساحر، يقع فقيه كوفي ليقدم لكم تجربة استثنائية تمتزج فيها رائحة القهوة المختصة مع نسيم البحر العليل.
+                    </p>
+                    <p class="mb-6 leading-relaxed">
+                        نحن لسنا مجرد مقهى، بل وجهة للباحثين عن الاسترخاء والهدوء. بموقعنا المميز في حي الحمراء، نوفر جلسات داخلية مريحة وجلسات خارجية تطل مباشرة على البحر، لتستمتعوا بقهوتكم مع منظر الغروب الخلاب.
+                    </p>
+                    <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm border border-brand-100">
+                            <div class="bg-brand-100 p-3 rounded-full text-brand-600">
+                                <i data-lucide="map-pin" class="h-6 w-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-900">موقع مميز</h4>
+                                <p class="text-sm text-brand-500">إطلالة بحرية ساحرة</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white p-4 rounded-xl shadow-sm border border-brand-100">
+                            <div class="bg-brand-100 p-3 rounded-full text-brand-600">
+                                <i data-lucide="users" class="h-6 w-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-900">أجواء راقية</h4>
+                                <p class="text-sm text-brand-500">جلسات عائلية مريحة</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 lg:mt-0 relative">
+                    <div class="absolute -top-4 -right-4 w-72 h-72 bg-brand-200 rounded-full opacity-50 blur-3xl"></div>
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=800" alt="Cafe Interior" class="relative rounded-3xl shadow-2xl border-4 border-white transform rotate-2 hover:rotate-0 transition-all duration-500 z-10">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <div id="gallery" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-brand-400 font-bold tracking-widest uppercase mb-2">المعرض</h2>
+                <h3 class="text-4xl font-extrabold text-brand-900 font-serif">لحظات في فقيه كوفي</h3>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="group relative h-72 rounded-2xl overflow-hidden cursor-pointer shadow-md">
+                    <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                </div>
+                <div class="group relative h-72 rounded-2xl overflow-hidden cursor-pointer shadow-md">
+                    <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                </div>
+                <div class="group relative h-72 rounded-2xl overflow-hidden cursor-pointer shadow-md">
+                    <img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reviews Section -->
+    <div id="reviews" class="py-20 bg-brand-50 border-t border-brand-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-brand-400 font-bold tracking-widest uppercase mb-2">آراء العملاء</h2>
+                <h3 class="text-4xl font-extrabold text-brand-900 font-serif">ماذا يقولون عنا؟</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex gap-1 mb-4 text-yellow-400">
+                        <i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">"مكان رايق وهادي على الكورنيش، القهوة ممتازة والجلسات الخارجية جميلة جداً."</p>
+                    <div class="font-bold text-brand-900">أحمد محمد</div>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex gap-1 mb-4 text-yellow-400">
+                         <i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">"الكيكة الزعفران لذيذة، والمكان شرح ويفتح النفس."</p>
+                    <div class="font-bold text-brand-900">سارة العمري</div>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex gap-1 mb-4 text-yellow-400">
+                         <i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">"موقعه مميز بجانب فقيه أكواريوم، والقهوة المختصة موزونة."</p>
+                    <div class="font-bold text-brand-900">خالد الغامدي</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="bg-brand-900 text-white py-20 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div>
+                    <h2 class="text-brand-400 font-bold tracking-widest uppercase mb-2">تواصل معنا</h2>
+                    <h3 class="text-4xl font-extrabold mb-8 font-serif">نحن هنا لخدمتك</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-brand-800 p-3 rounded-lg"><i data-lucide="map-pin" class="h-6 w-6 text-brand-400"></i></div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">الموقع</h4>
+                                <p class="text-brand-200">جدة، حي الحمراء</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-brand-800 p-3 rounded-lg"><i data-lucide="phone" class="h-6 w-6 text-brand-400"></i></div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">اتصل بنا</h4>
+                                <p class="text-brand-200">050 000 0000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-3xl p-8 shadow-2xl text-brand-900">
+                    <h4 class="text-2xl font-bold mb-6">أرسل لنا رسالة</h4>
+                    <form class="space-y-4" onsubmit="event.preventDefault(); alert('شكراً لتواصلك معنا! سيتم الرد قريباً.');">
+                        <input type="text" class="w-full px-4 py-3 rounded-xl border bg-gray-50" placeholder="الاسم" required>
+                        <input type="tel" class="w-full px-4 py-3 rounded-xl border bg-gray-50" placeholder="رقم الجوال" required>
+                        <textarea rows="4" class="w-full px-4 py-3 rounded-xl border bg-gray-50" placeholder="الرسالة" required></textarea>
+                        <button type="submit" class="w-full bg-brand-600 text-white py-4 rounded-xl font-bold hover:bg-brand-700 transition-colors">إرسال</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-brand-950 text-brand-100 py-8 border-t border-brand-900">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="font-bold text-lg">فقيه كوفي</p>
+            <p class="text-sm text-brand-400 mt-1">جميع الحقوق محفوظة © 2024</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Menu Filtering Logic
+        function filterMenu(category, btn) {
+            // Update buttons state
+            document.querySelectorAll('.menu-tab').forEach(b => {
+                b.classList.remove('bg-brand-700', 'text-white', 'shadow-md', 'transform', 'scale-105');
+                b.classList.add('bg-white', 'text-gray-600', 'hover:bg-brand-100');
+            });
+            btn.classList.remove('bg-white', 'text-gray-600', 'hover:bg-brand-100');
+            btn.classList.add('bg-brand-700', 'text-white', 'shadow-md', 'transform', 'scale-105');
+
+            // Filter items
+            const items = document.querySelectorAll('.menu-item');
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'flex';
+                    item.classList.add('fade-in');
+                } else {
+                    item.style.display = 'none';
+                    item.classList.remove('fade-in');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
