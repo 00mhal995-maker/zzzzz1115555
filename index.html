@@ -151,6 +151,43 @@
           -ms-overflow-style: none;
           scrollbar-width: none;
       }
+
+      /* Menu Tabs Styling */
+      #menu-tabs {
+        scroll-behavior: smooth;
+        padding: 0.5rem 0;
+      }
+
+      .menu-tab {
+        flex-shrink: 0;
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+        transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      .menu-tab:first-child {
+        margin-left: auto;
+      }
+
+      .menu-tab:last-child {
+        margin-right: auto;
+      }
+
+      /* Responsive: Show all categories on small screens */
+      @media (max-width: 768px) {
+        #menu-tabs {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+        
+        .menu-tab {
+          min-width: fit-content;
+          font-size: 0.85rem;
+          padding-left: 1rem !important;
+          padding-right: 1rem !important;
+          white-space: nowrap;
+        }
+      }
     </style>
 </head>
 <body class="antialiased selection:bg-brand-400 selection:text-brand-900">
@@ -258,7 +295,7 @@
             </div>
 
             <!-- Categories (Scrollable Horizontal) -->
-            <div class="flex overflow-x-auto pb-8 mb-12 gap-4 justify-start md:justify-center no-scrollbar mask-gradient reveal-on-scroll" style="transition-delay: 0.1s" id="menu-tabs">
+            <div class="flex overflow-x-auto pb-8 mb-12 gap-4 justify-start md:justify-center no-scrollbar mask-gradient reveal-on-scroll snap-x snap-mandatory scroll-smooth" style="transition-delay: 0.1s; scroll-behavior: smooth;" id="menu-tabs">
                 <!-- Injected via JS -->
             </div>
 
@@ -406,7 +443,7 @@
         // UPDATED MENU ITEMS WITH WORKING UNSPLASH IMAGES FOR ALL
         const DEFAULT_MENU_ITEMS = [
             // Breakfast & Sides
-            { id: 'bf1', name: 'فطور فقيه', description: 'Fakieh Breakfast - 860 سعرة', price: '56', category: 'breakfast', image: '', available: true },
+            { id: 'bf1', name: 'فطور فقيه', description: 'Fakieh Breakfast - 860 سعرة', price: '56', category: 'breakfast', image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=600', available: true },
             { id: 'bf2', name: 'كرواسون جبنة', description: 'Cheese Croissant - 385 سعرة', price: '15', category: 'breakfast', image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=600', available: true },
             { id: 'bf3', name: 'كرواسون سادة', description: 'Plain Croissant - 230 سعرة', price: '13', category: 'breakfast', image: 'https://images.unsplash.com/photo-1623334044303-241021148842?auto=format&fit=crop&q=80&w=600', available: true },
             { id: 'bf4', name: 'كرواسون بالبيض', description: 'Egg Croissant - 560 سعرة', price: '19', category: 'breakfast', image: 'https://images.unsplash.com/photo-1510629954389-c1e0da47d414?auto=format&fit=crop&q=80&w=600', available: true },
@@ -536,7 +573,7 @@
             { id: 'ex9', name: 'ميريندا و حمضيات', description: 'Miranda and Citrus Sod - 157 سعرة', price: '9', category: 'extras', image: 'https://images.unsplash.com/photo-1527661591475-527312dd65f5?auto=format&fit=crop&q=80&w=600', available: true },
             { id: 'ex10', name: 'بيره', description: 'Malt Beverage - - سعرة', price: '19', category: 'extras', image: 'https://images.unsplash.com/photo-1566933294831-bda0d4811651?auto=format&fit=crop&q=80&w=600', available: true },
 
-            // Shisha - Using atmospheric/lounge images as placeholders due to limited specific shisha photography
+            // Shisha
             { id: 'sh1', name: 'لوف فقيه', description: 'Molasses - Fakieh Special', price: '65', category: 'shisha', image: 'https://images.unsplash.com/photo-1558012679-b148d4232b71?auto=format&fit=crop&q=80&w=600', available: true },
             { id: 'sh2', name: 'تفاحتين فاخر', description: 'Double Apple (Premium)', price: '61', category: 'shisha', image: 'https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&q=80&w=600', available: true },
             { id: 'sh3', name: 'تفاحتين نخله', description: 'Two Apples (Nakhlah)', price: '61', category: 'shisha', image: 'https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&q=80&w=600', available: true },
@@ -560,13 +597,50 @@
 
         // Render Categories
         const tabsContainer = document.getElementById('menu-tabs');
+        let categoryTitle = null;
+
         categories.forEach(cat => {
             const btn = document.createElement('button');
             btn.textContent = cat.name;
+            btn.dataset.category = cat.id;
             btn.className = `menu-tab flex-shrink-0 px-6 py-2 rounded-full text-xs font-bold border transition-all duration-500 hover:scale-105 ${cat.id === 'all' ? 'bg-brand-400 text-brand-900 border-brand-400 shadow-[0_0_15px_rgba(176,151,74,0.4)]' : 'bg-transparent text-brand-200 border-brand-700 hover:border-brand-400 hover:text-brand-400'}`;
-            btn.onclick = () => filterMenu(cat.id, btn);
+            btn.onclick = () => {
+                filterMenu(cat.id, btn);
+                // عرض اسم الفئة
+                showCategoryName(cat.name);
+                // تمرير سلس للزر
+                btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            };
             tabsContainer.appendChild(btn);
         });
+
+        // دالة عرض اسم الفئة
+        function showCategoryName(categoryName) {
+            // إزالة العنصر القديم إن وجد
+            const oldTitle = document.querySelector('.category-title-popup');
+            if (oldTitle) oldTitle.remove();
+
+            // إنشاء عنصر العنوان
+            const titleEl = document.createElement('div');
+            titleEl.className = 'category-title-popup fixed top-32 left-1/2 -translate-x-1/2 bg-brand-400 text-brand-900 px-8 py-3 rounded-full font-bold text-sm z-40 animate-bounce shadow-[0_0_20px_rgba(176,151,74,0.4)]';
+            titleEl.textContent = categoryName;
+            titleEl.style.animation = 'fadeInDown 0.5s ease-out, fadeOutUp 0.5s ease-out 1.5s forwards';
+            document.body.appendChild(titleEl);
+        }
+
+        // إضافة animations في CSS
+        const styleEl = document.createElement('style');
+        styleEl.textContent = `
+            @keyframes fadeInDown {
+                from { opacity: 0; transform: translateY(-20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            @keyframes fadeOutUp {
+                from { opacity: 1; transform: translateY(0); }
+                to { opacity: 0; transform: translateY(-20px); }
+            }
+        `;
+        document.head.appendChild(styleEl);
 
         // Render Menu Items (Glassmorphism Style)
         const gridContainer = document.getElementById('menu-grid');
@@ -620,12 +694,20 @@
             // Update Active Tab
             document.querySelectorAll('.menu-tab').forEach(b => {
                 b.classList.remove('bg-brand-400', 'text-brand-900', 'shadow-[0_0_15px_rgba(176,151,74,0.4)]');
-                b.classList.add('bg-transparent', 'text-brand-200');
+                b.classList.add('bg-transparent', 'text-brand-200', 'border-brand-700');
             });
-            btn.classList.remove('bg-transparent', 'text-brand-200');
+            btn.classList.remove('bg-transparent', 'text-brand-200', 'border-brand-700');
             btn.classList.add('bg-brand-400', 'text-brand-900', 'shadow-[0_0_15px_rgba(176,151,74,0.4)]');
             
-            renderItems(category);
+            // Add smooth scroll animation to grid
+            const gridContainer = document.getElementById('menu-grid');
+            gridContainer.style.opacity = '0.5';
+            gridContainer.style.transition = 'opacity 0.3s ease';
+            
+            setTimeout(() => {
+                renderItems(category);
+                gridContainer.style.opacity = '1';
+            }, 150);
         }
 
         // Gallery Strip
