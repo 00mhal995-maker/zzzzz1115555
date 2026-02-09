@@ -168,7 +168,7 @@
                     <div class="relative w-14 h-14 rounded-full border border-brand-400/30 p-1 group-hover:border-brand-400 transition-colors duration-500">
                          <!-- Placeholder logo if image fails -->
                          <div class="w-full h-full rounded-full bg-brand-800 flex items-center justify-center overflow-hidden">
-                             <img src="./logo.jpg" onerror="this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=200'" alt="Fakieh Logo" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                             <img src="./logo.png" onerror="this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=200'" alt="Fakieh Logo" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
                          </div>
                     </div>
                     <div>
@@ -303,15 +303,7 @@
         </div>
     </div>
 
-    <!-- Gallery (Film Strip Style) -->
-    <div id="gallery" class="py-32 bg-brand-900 overflow-hidden">
-        <div class="text-center mb-16 reveal-on-scroll">
-            <h2 class="text-3xl font-serif text-white">معرض الصور</h2>
-        </div>
-        <div class="flex gap-4 animate-scroll whitespace-nowrap px-4 reveal-on-scroll overflow-x-auto no-scrollbar" style="transition-delay: 0.1s" id="gallery-strip">
-            <!-- Images injected here -->
-        </div>
-    </div>
+  
 
     <!-- Footer -->
     <footer class="bg-brand-950 border-t border-white/5 py-16 reveal-on-scroll">
@@ -320,7 +312,7 @@
                 <div class="h-[1px] w-12 bg-white"></div>
                 <!-- Logo fallback in footer too -->
                 <div class="h-8 w-8 rounded-full overflow-hidden border border-brand-400/30">
-                     <img src="./logo.jpg" onerror="this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=200'" class="w-full h-full object-cover">
+                     <img src="./logo.png" onerror="this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=200'" class="w-full h-full object-cover">
                 </div>
                 <div class="h-[1px] w-12 bg-white"></div>
             </div>
@@ -406,7 +398,7 @@
         // UPDATED MENU ITEMS WITH WORKING UNSPLASH IMAGES FOR ALL
         const DEFAULT_MENU_ITEMS = [
             // Breakfast & Sides
-            { id: 'bf1', name: 'فطور فقيه', description: 'Fakieh Breakfast - 860 سعرة', price: '56', category: 'breakfast', image: 'logo.jpg', available: true },
+            { id: 'bf1', name: 'فطور فقيه', description: 'Fakieh Breakfast - 860 سعرة', price: '56', category: 'breakfast', image: 'logo.png', available: true },
             { id: 'bf2', name: 'كرواسون جبنة', description: 'Cheese Croissant - 385 سعرة', price: '15', category: 'breakfast', image: './img/1W.png', available: true },
             { id: 'bf3', name: 'كرواسون سادة', description: 'Plain Croissant - 230 سعرة', price: '13', category: 'breakfast', image: './img/2W.png', available: true },
             { id: 'bf4', name: 'كرواسون بالبيض', description: 'Egg Croissant - 560 سعرة', price: '19', category: 'breakfast', image: './img/3W.png', available: true },
@@ -421,7 +413,7 @@
             { id: 'sa3', name: 'سيزر دجاج', description: 'Chicken Caesar Salad - 351 سعرة', price: '29', category: 'salads_appetizers', image: './img/16W.png', available: true },
             { id: 'sa4', name: 'تبولة', description: 'Tabbouleh - 189 سعرة', price: '16', category: 'salads_appetizers', image: './img/9W.png', available: true },
             { id: 'sa5', name: 'فتوش', description: 'Fattoush - 300 سعرة', price: '23', category: 'salads_appetizers', image: './img/10W.png', available: true },
-            { id: 'sa6', name: 'حمص', description: 'Hummus - 164 سعرة', price: '19', category: 'salads_appetizers', image: '17W.png', available: true },
+            { id: 'sa6', name: 'حمص', description: 'Hummus - 164 سعرة', price: '19', category: 'salads_appetizers', image: './img/17W.png', available: true },
             { id: 'sa7', name: 'ورق عنب', description: 'Warak Enab - 185 سعرة', price: '18', category: 'salads_appetizers', image: './img/11W.png', available: true },
             { id: 'sa8', name: 'كبه', description: 'Kibbeh - 260 سعرة', price: '11', category: 'salads_appetizers', image: './img/111W.png', available: true },
 
@@ -525,38 +517,38 @@
             { id: 'ju12', name: 'كوكتيل طبقات', description: 'Layered Cocktail - 200 سعرة', price: '15/30', category: 'juice', image: './img/29W.png', available: true },
 
             // Extras & Canned Drinks
-            { id: 'ex1', name: 'مياه غازية', description: 'Sparkling Water - 5 سعرة', price: '13', category: 'extras', image: 'https://images.unsplash.com/photo-1560512823-8db965507d83?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'ex2', name: 'مياه صغير', description: 'Water (S) - 5 سعرة', price: '7', category: 'extras', image: 'https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'ex3', name: 'مياه كبير', description: 'Water (L) - 5 سعرة', price: '13', category: 'extras', image: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'ex4', name: 'كوكاكولا- دايت', description: 'coca-cola / Diet - 1 سعرة', price: '9', category: 'extras', image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'ex5', name: 'سبرايت- دايت', description: 'Sprite / Diet - 1 سعرة', price: '9', category: 'extras', image: 'https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'ex6', name: 'ريد بول', description: 'Red Bull - 112 سعرة', price: '21', category: 'extras', image: 'https://images.unsplash.com/photo-1596700810756-12c8b7468641?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'ex7', name: 'كود ريد', description: 'Code Red - 120 سعرة', price: '12', category: 'extras', image: 'https://images.unsplash.com/photo-1605610996879-1d374d754707?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'ex8', name: 'نكهة', description: 'Flavor Shot - - سعرة', price: '5', category: 'extras', image: 'https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'ex9', name: 'ميريندا و حمضيات', description: 'Miranda and Citrus Sod - 157 سعرة', price: '9', category: 'extras', image: 'https://images.unsplash.com/photo-1527661591475-527312dd65f5?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'ex10', name: 'بيره', description: 'Malt Beverage - - سعرة', price: '19', category: 'extras', image: 'https://images.unsplash.com/photo-1566933294831-bda0d4811651?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ex1', name: 'مياه غازية', description: 'Sparkling Water - 5 سعرة', price: '13', category: 'extras', image: './img/30W.png', available: true },
+            { id: 'ex2', name: 'مياه صغير', description: 'Water (S) - 5 سعرة', price: '7', category: 'extras', image: './img/31W.png', available: true },
+            { id: 'ex3', name: 'مياه كبير', description: 'Water (L) - 5 سعرة', price: '13', category: 'extras', image: './img/32W.png', available: true },
+            { id: 'ex4', name: 'كوكاكولا- دايت', description: 'coca-cola / Diet - 1 سعرة', price: '9', category: 'extras', image: './img/33W.png', available: true },
+            { id: 'ex5', name: 'سبرايت- دايت', description: 'Sprite / Diet - 1 سعرة', price: '9', category: 'extras', image: './img/34W.png', available: true },
+            { id: 'ex6', name: 'ريد بول', description: 'Red Bull - 112 سعرة', price: '21', category: 'extras', image: './img/35W.png', available: true },
+            { id: 'ex7', name: 'كود ريد', description: 'Code Red - 120 سعرة', price: '12', category: 'extras', image: './img/36W.png', available: true },
+            { id: 'ex8', name: 'نكهة', description: 'Flavor Shot - - سعرة', price: '5', category: 'extras', image: './img/37W.png', available: true },
+            { id: 'ex9', name: 'ميريندا و حمضيات', description: 'Miranda and Citrus Sod - 157 سعرة', price: '9', category: 'extras', image: './img/38W.png', available: true },
+            { id: 'ex10', name: 'بيره', description: 'Malt Beverage - - سعرة', price: '19', category: 'extras', image: './img/39W.png', available: true },
 
             // Shisha - Using atmospheric/lounge images as placeholders due to limited specific shisha photography
-            { id: 'sh1', name: 'لوف فقيه', description: 'Molasses - Fakieh Special', price: '65', category: 'shisha', image: 'https://images.unsplash.com/photo-1558012679-b148d4232b71?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'sh2', name: 'تفاحتين فاخر', description: 'Double Apple (Premium)', price: '61', category: 'shisha', image: 'https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'sh3', name: 'تفاحتين نخله', description: 'Two Apples (Nakhlah)', price: '61', category: 'shisha', image: 'https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'sh4', name: 'عنب', description: 'Grape', price: '57.5', category: 'shisha', image: 'https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'sh5', name: 'عنب نعناع', description: 'Grape Mint', price: '57.5', category: 'shisha', image: 'https://images.unsplash.com/photo-1585822818968-0857500d0752?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'sh6', name: 'عنب توت', description: 'Grape Berry', price: '57.5', category: 'shisha', image: 'https://images.unsplash.com/photo-1496318447583-f524534e9ce9?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'sh7', name: 'ليمون نعناع', description: 'Lemon Mint', price: '57.5', category: 'shisha', image: 'https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'sh8', name: 'علكه نعناع', description: 'Gum Mint', price: '57.5', category: 'shisha', image: 'https://images.unsplash.com/photo-1626079717156-f28323fc1793?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'sh9', name: 'علكه مستكة', description: 'Gum Mastic', price: '57.5', category: 'shisha', image: 'https://images.unsplash.com/photo-1558012679-b148d4232b71?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'sh10', name: 'توت', description: 'Blueberry', price: '57.5', category: 'shisha', image: 'https://images.unsplash.com/photo-1496318447583-f524534e9ce9?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'sh11', name: 'حبحب', description: 'Watermelon', price: '57.5', category: 'shisha', image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'sh12', name: 'فراولة', description: 'Strawberry', price: '57.5', category: 'shisha', image: 'https://images.unsplash.com/photo-1518635017498-87f514b751ba?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'sh13', name: 'كنتلوب', description: 'Cantaloupe', price: '57.5', category: 'shisha', image: 'https://images.unsplash.com/photo-1598155523122-38423ab4d621?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'sh14', name: 'مستكة', description: 'Mastic', price: '57.5', category: 'shisha', image: 'https://images.unsplash.com/photo-1558012679-b148d4232b71?auto=format&fit=crop&q=80&w=600', available: true },
-            { id: 'sh15', name: 'حجر إضافي', description: 'Extra Head / Refill', price: '30', category: 'shisha', image: 'https://images.unsplash.com/photo-1527661591475-527312dd65f5?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'sh1', name: 'لوف فقيه', description: 'Molasses - Fakieh Special', price: '65', category: 'shisha', image: 'logo.png', available: true },
+            { id: 'sh2', name: 'تفاحتين فاخر', description: 'Double Apple (Premium)', price: '61', category: 'shisha', image: 'logo.png', available: true },
+            { id: 'sh3', name: 'تفاحتين نخله', description: 'Two Apples (Nakhlah)', price: '61', category: 'shisha', image: 'logo.png', available:true},
+            { id:'sh4' ,name:'عنب' ,description:'Grape' ,price:'57.5' ,category:'shisha' ,image:'logo.png' ,available:true},
+            { id: 'sh5', name: 'عنب نعناع', description: 'Grape Mint', price: '57.5', category: 'shisha', image: 'logo.png', available: true },
+            { id: 'sh6', name: 'عنب توت', description: 'Grape Berry', price: '57.5', category: 'shisha', image: 'logo.png', available: true },
+            { id: 'sh7', name: 'ليمون نعناع', description: 'Lemon Mint', price: '57.5', category: 'shisha', image: 'logo.png', available: true },
+            { id: 'sh8', name: 'علكه نعناع', description: 'Gum Mint', price: '57.5', category: 'shisha', image: 'logo.png', available: true },
+            { id: 'sh9', name: 'علكه مستكة', description: 'Gum Mastic', price: '57.5', category: 'shisha', image: 'logo.png', available: true },
+            { id: 'sh10', name: 'توت', description: 'Blueberry', price: '57.5', category: 'shisha', image: 'logo.png', available:true},
+            { id:'sh11' ,name:'حبحب' ,description:'Watermelon' ,price:'57.5' ,category:'shisha' ,image:'logo.png' ,available:true},
+            { id:'sh12' ,name:'فراولة' ,description:'Strawberry' ,price:'57.5' ,category:'shisha' ,image:'logo.png' ,available:true},
+            { id:'sh13' ,name:'كنتلوب' ,description:'Cantaloupe' ,price:'57.5' ,category:'shisha' ,image:'logo.png' ,available:true},
+            { id:'sh14' ,name:'مستكة' ,description:'Mastic' ,price:'57.5' ,category:'shisha' ,image:'logo.png', available:true},
+            { id: 'sh15', name: 'حجر إضافي', description: 'Extra Head / Refill', price: '30', category: 'shisha', image: 'logo.png', available: true },
             { id: 'sh16', name: 'لي طبي', description: 'Disposable Hose', price: '4', category: 'shisha', image: 'https://myvapetastic.com/wp-content/uploads/2021/06/008989.png', available: true },
         ];
         
         const categories = DEFAULT_CATEGORIES;
-        const items = DEFAULT_MENU_ITEMS;
+        const items = DEFAULT_MENU_ITEMS; 
 
         // Render Categories
         const tabsContainer = document.getElementById('menu-tabs');
