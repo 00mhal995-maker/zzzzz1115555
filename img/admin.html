@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم | فقيه كوفي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ['Cairo', 'sans-serif'] },
+            colors: {
+              brand: {
+                50: '#F9F7F5', 100: '#F2EBE5', 400: '#C59D5F', 600: '#8C6239', 900: '#2C1810',
+              }
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+
+    <!-- Login Section -->
+    <div id="login-section" class="min-h-screen flex items-center justify-center p-4">
+        <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-brand-100">
+            <div class="text-center mb-8">
+                <div class="bg-brand-900 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-lucide="lock" class="text-brand-400 h-8 w-8"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-brand-900">تسجيل دخول الموظفين</h2>
+                <p class="text-sm text-gray-500 mt-2">اسم المستخدم: admin | كلمة المرور: admin123</p>
+            </div>
+            <form onsubmit="handleLogin(event)" class="space-y-4">
+                <input type="text" id="username" placeholder="اسم المستخدم" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-400 focus:outline-none">
+                <input type="password" id="password" placeholder="كلمة المرور" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-400 focus:outline-none">
+                <button type="submit" class="w-full bg-brand-900 text-white py-3 rounded-xl font-bold hover:bg-brand-600 transition-colors">دخول</button>
+            </form>
+            <p id="login-error" class="text-red-500 text-center mt-4 hidden text-sm">بيانات الدخول غير صحيحة</p>
+            <div class="text-center mt-6">
+                <a href="index.html" class="text-brand-600 hover:underline text-sm">العودة للموقع الرئيسي</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div id="dashboard-section" class="hidden min-h-screen">
+        <nav class="bg-brand-900 text-white shadow-lg">
+            <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
+                <div class="flex items-center gap-2 font-bold text-xl">
+                    <i data-lucide="layout-dashboard" class="text-brand-400"></i>
+                    <span>لوحة التحكم</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="index.html" target="_blank" class="text-sm text-brand-100 hover:text-white">عرض الموقع</a>
+                    <button onclick="handleLogout()" class="bg-brand-600 hover:bg-red-600 px-4 py-2 rounded-lg text-sm transition-colors flex items-center gap-2">
+                        <i data-lucide="log-out" class="h-4 w-4"></i> خروج
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="max-w-7xl mx-auto px-4 py-8">
+            <!-- Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-brand-100 flex justify-between items-center">
+                    <div>
+                        <p class="text-gray-500 text-sm">المنتجات</p>
+                        <h3 class="text-3xl font-bold text-brand-900" id="total-products">0</h3>
+                    </div>
+                    <div class="bg-brand-50 p-3 rounded-full text-brand-600"><i data-lucide="coffee"></i></div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-brand-100 flex justify-between items-center">
+                    <div>
+                        <p class="text-gray-500 text-sm">الأقسام</p>
+                        <h3 class="text-3xl font-bold text-brand-900" id="total-categories">0</h3>
+                    </div>
+                     <div class="bg-brand-50 p-3 rounded-full text-brand-600"><i data-lucide="layers"></i></div>
+                </div>
+                 <div class="bg-white p-6 rounded-xl shadow-sm border border-brand-100 flex justify-between items-center">
+                    <div>
+                        <p class="text-gray-500 text-sm">إجراءات</p>
+                        <button onclick="resetData()" class="text-red-500 text-xs hover:underline flex items-center gap-1 mt-1">
+                            <i data-lucide="rotate-ccw" class="h-3 w-3"></i> استعادة ضبط المصنع
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Table -->
+            <div class="bg-white rounded-xl shadow-sm border border-brand-100 overflow-hidden">
+                <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+                    <h3 class="font-bold text-lg text-brand-900">إدارة المنتجات</h3>
+                    <button onclick="openModal()" class="bg-brand-600 text-white px-4 py-2 rounded-lg hover:bg-brand-900 transition-colors flex items-center gap-2">
+                        <i data-lucide="plus" class="h-4 w-4"></i> منتج جديد
+                    </button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-right">
+                        <thead class="bg-gray-50 text-gray-500 text-sm">
+                            <tr>
+                                <th class="p-4">المنتج</th>
+                                <th class="p-4">القسم</th>
+                                <th class="p-4">السعر</th>
+                                <th class="p-4">الحالة</th>
+                                <th class="p-4">إجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="products-table-body" class="divide-y divide-gray-100">
+                            <!-- Rows injected by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="product-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center p-4 backdrop-blur-sm z-50">
+        <div class="bg-white rounded-2xl w-full max-w-2xl shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+                <h3 class="font-bold text-xl text-brand-900" id="modal-title">إضافة منتج جديد</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-red-500"><i data-lucide="x"></i></button>
+            </div>
+            <form onsubmit="handleSaveProduct(event)" class="p-6 space-y-4">
+                <input type="hidden" id="edit-id">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-1">اسم المنتج</label>
+                        <input required type="text" id="prod-name" class="w-full border rounded-lg p-2 focus:ring-brand-400">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">القسم</label>
+                        <select id="prod-category" class="w-full border rounded-lg p-2 focus:ring-brand-400">
+                            <!-- Categories injected -->
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-1">السعر (مثلاً: 15 ريال)</label>
+                        <input required type="text" id="prod-price" class="w-full border rounded-lg p-2 focus:ring-brand-400">
+                    </div>
+                    <div>
+                         <label class="block text-sm font-medium mb-1">السعر الأصلي (للخصومات)</label>
+                        <input type="text" id="prod-original-price" class="w-full border rounded-lg p-2 focus:ring-brand-400">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">رابط الصورة</label>
+                    <input type="text" id="prod-image" class="w-full border rounded-lg p-2 text-left" dir="ltr" placeholder="https://...">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">الوصف</label>
+                    <textarea id="prod-desc" rows="3" class="w-full border rounded-lg p-2 focus:ring-brand-400"></textarea>
+                </div>
+                <div class="flex gap-6">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" id="prod-popular" class="w-4 h-4 text-brand-600">
+                        <span>منتج مميز (يظهر في الرئيسية)</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" id="prod-available" class="w-4 h-4 text-brand-600" checked>
+                        <span>متوفر</span>
+                    </label>
+                </div>
+                <div class="pt-4 flex gap-3">
+                    <button type="submit" class="flex-1 bg-brand-600 text-white py-2 rounded-lg font-bold hover:bg-brand-700">حفظ</button>
+                    <button type="button" onclick="closeModal()" class="flex-1 bg-gray-100 text-gray-700 py-2 rounded-lg hover:bg-gray-200">إلغاء</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // --- Data Logic (Shared with Index but simplified) ---
+        const DEFAULT_CATEGORIES = [
+          { id: 'all', name: 'الكل' },
+          { id: 'hot_coffee', name: 'القهوة الساخنة' },
+          { id: 'iced_coffee', name: 'القهوة الباردة' },
+          { id: 'specialty_coffee', name: 'القهوة المختصة' },
+          { id: 'tea', name: 'الشاي' },
+          { id: 'cold_drinks', name: 'المشروبات الباردة' },
+          { id: 'hot_drinks_other', name: 'مشروبات ساخنة أخرى' },
+          { id: 'dessert', name: 'الحلويات' },
+          { id: 'bakery', name: 'المخبوزات' },
+        ];
+        
+        // Note: In a real app, we'd import this to avoid duplication, but for this static setup we check LS first.
+        function loadData() {
+            const savedItems = localStorage.getItem('fakieh_menu_items');
+            const savedCats = localStorage.getItem('fakieh_categories');
+            return {
+                items: savedItems ? JSON.parse(savedItems) : [], // If empty, index.html should populate it first, or we define defaults here too.
+                categories: savedCats ? JSON.parse(savedCats) : DEFAULT_CATEGORIES
+            };
+        }
+
+        let { items, categories } = loadData();
+
+        // --- Login Logic ---
+        function handleLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById('username').value;
+            const p = document.getElementById('password').value;
+            if (u === 'admin' && p === 'admin123') {
+                document.getElementById('login-section').classList.add('hidden');
+                document.getElementById('dashboard-section').classList.remove('hidden');
+                renderDashboard();
+            } else {
+                document.getElementById('login-error').classList.remove('hidden');
+            }
+        }
+
+        function handleLogout() {
+            location.reload();
+        }
+
+        // --- Dashboard Logic ---
+        function renderDashboard() {
+            // Check if we have items (if index.html hasn't run yet)
+            if (items.length === 0) {
+                alert('الرجاء فتح الصفحة الرئيسية (index.html) مرة واحدة على الأقل لتحميل البيانات الافتراضية.');
+                return;
+            }
+
+            document.getElementById('total-products').textContent = items.length;
+            document.getElementById('total-categories').textContent = categories.length;
+
+            const tbody = document.getElementById('products-table-body');
+            tbody.innerHTML = '';
+
+            items.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-gray-50 border-b border-gray-50';
+                tr.innerHTML = `
+                    <td class="p-4">
+                        <div class="flex items-center gap-3">
+                            <img src="${item.image || 'https://via.placeholder.com/40'}" class="w-10 h-10 rounded-lg object-cover bg-gray-200">
+                            <div>
+                                <div class="font-bold text-brand-900">${item.name}</div>
+                                <div class="text-xs text-gray-500">${item.description.substring(0, 30)}...</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="p-4 text-sm text-gray-600">${getCategoryName(item.category)}</td>
+                    <td class="p-4">
+                        <div class="font-medium">${item.price}</div>
+                    </td>
+                    <td class="p-4">
+                        <button onclick="toggleAvailability('${item.id}')" class="px-2 py-1 rounded text-xs ${item.available ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}">
+                            ${item.available ? 'متوفر' : 'نفذ'}
+                        </button>
+                    </td>
+                    <td class="p-4">
+                        <div class="flex gap-2">
+                            <button onclick="editProduct('${item.id}')" class="text-blue-500 hover:text-blue-700"><i data-lucide="edit-2" class="h-4 w-4"></i></button>
+                            <button onclick="deleteProduct('${item.id}')" class="text-red-500 hover:text-red-700"><i data-lucide="trash-2" class="h-4 w-4"></i></button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+            lucide.createIcons();
+        }
+
+        function getCategoryName(id) {
+            const cat = categories.find(c => c.id === id);
+            return cat ? cat.name : id;
+        }
+
+        function saveData() {
+            localStorage.setItem('fakieh_menu_items', JSON.stringify(items));
+            localStorage.setItem('fakieh_categories', JSON.stringify(categories));
+            renderDashboard();
+        }
+
+        function toggleAvailability(id) {
+            const item = items.find(i => i.id === id);
+            if (item) {
+                item.available = !item.available;
+                saveData();
+            }
+        }
+
+        function deleteProduct(id) {
+            if(confirm('هل أنت متأكد من الحذف؟')) {
+                items = items.filter(i => i.id !== id);
+                saveData();
+            }
+        }
+
+        function resetData() {
+            if(confirm('هل أنت متأكد؟ سيتم حذف جميع التعديلات والعودة للبيانات الأساسية.')) {
+                localStorage.removeItem('fakieh_menu_items');
+                localStorage.removeItem('fakieh_categories');
+                alert('تمت إعادة الضبط. يرجى زيارة الصفحة الرئيسية لإعادة تحميل البيانات.');
+                location.reload();
+            }
+        }
+
+        // --- Modal Logic ---
+        function openModal(editItem = null) {
+            const modal = document.getElementById('product-modal');
+            const title = document.getElementById('modal-title');
+            
+            // Populate Categories
+            const catSelect = document.getElementById('prod-category');
+            catSelect.innerHTML = categories.filter(c => c.id !== 'all').map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+
+            if (editItem) {
+                title.textContent = 'تعديل منتج';
+                document.getElementById('edit-id').value = editItem.id;
+                document.getElementById('prod-name').value = editItem.name;
+                document.getElementById('prod-price').value = editItem.price;
+                document.getElementById('prod-original-price').value = editItem.originalPrice || '';
+                document.getElementById('prod-category').value = editItem.category;
+                document.getElementById('prod-image').value = editItem.image || '';
+                document.getElementById('prod-desc').value = editItem.description || '';
+                document.getElementById('prod-popular').checked = editItem.popular || false;
+                document.getElementById('prod-available').checked = editItem.available !== false;
+            } else {
+                title.textContent = 'إضافة منتج جديد';
+                document.getElementById('edit-id').value = '';
+                document.querySelector('form').reset();
+            }
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            document.getElementById('product-modal').classList.add('hidden');
+            document.getElementById('product-modal').classList.remove('flex');
+        }
+
+        function editProduct(id) {
+            const item = items.find(i => i.id === id);
+            if (item) openModal(item);
+        }
+
+        function handleSaveProduct(e) {
+            e.preventDefault();
+            const id = document.getElementById('edit-id').value;
+            const newItem = {
+                id: id || 'item_' + Date.now(),
+                name: document.getElementById('prod-name').value,
+                price: document.getElementById('prod-price').value,
+                originalPrice: document.getElementById('prod-original-price').value,
+                category: document.getElementById('prod-category').value,
+                image: document.getElementById('prod-image').value,
+                description: document.getElementById('prod-desc').value,
+                popular: document.getElementById('prod-popular').checked,
+                available: document.getElementById('prod-available').checked,
+            };
+
+            if (id) {
+                const index = items.findIndex(i => i.id === id);
+                if (index !== -1) items[index] = newItem;
+            } else {
+                items.unshift(newItem);
+            }
+            
+            saveData();
+            closeModal();
+        }
+    </script>
+</body>
+</html>

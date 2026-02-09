@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fakieh Cafe | فقيه كافيه</title>
+    <meta name="description" content="فقيه كافيه - تجربة فريدة في عالم القهوة والمأكولات.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Cairo', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
+            },
+            colors: {
+              brand: {
+                50: '#F9F7F2',
+                100: '#E6DFC8',
+                200: '#D4C79E',
+                300: '#C2AF74',
+                400: '#B0974A', /* Gold */
+                500: '#8D793B',
+                600: '#6A5B2C',
+                700: '#473D1E',
+                800: '#241F0F',
+                900: '#0F1C15', /* Deep Dark Green */
+                950: '#050A07',
+              }
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'spin-slow': 'spin 20s linear infinite',
+              'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
+              }
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: #0F1C15; }
+      ::-webkit-scrollbar-thumb { background: #B0974A; border-radius: 10px; }
+      
+      body { 
+        background-color: #0F1C15; 
+        color: #F9F7F2; 
+        overflow-x: hidden;
+      }
+
+      /* Noise Texture Overlay */
+      .noise-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.04;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      }
+
+      /* Spotlight Cursor Effect */
+      #cursor-light {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(176, 151, 74, 0.15) 0%, rgba(15, 28, 21, 0) 70%);
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 1;
+        mix-blend-mode: screen;
+        transition: transform 0.1s ease;
+      }
+
+      /* Glassmorphism Card */
+      .glass-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.5s ease;
+      }
+      
+      .glass-card:hover {
+        background: rgba(176, 151, 74, 0.08);
+        border-color: rgba(176, 151, 74, 0.3);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 40px rgba(176, 151, 74, 0.1);
+      }
+
+      .text-glow {
+        text-shadow: 0 0 20px rgba(176, 151, 74, 0.3);
+      }
+      
+      .fade-in-up {
+        animation: fadeInUp 0.8s ease-out forwards;
+        opacity: 0;
+      }
+      
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Scroll Reveal Animation */
+      .reveal-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        will-change: opacity, transform;
+      }
+      
+      .reveal-on-scroll.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .will-change-transform {
+        will-change: transform;
+      }
+      
+      /* Horizontal Scroll Hide */
+      .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+      .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+      }
+
+      /* Menu Tabs Styling */
+      #menu-tabs {
+        scroll-behavior: smooth;
+        padding: 0.5rem 0;
+      }
+
+      .menu-tab {
+        flex-shrink: 0;
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+        transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      .menu-tab:first-child {
+        margin-left: auto;
+      }
+
+      .menu-tab:last-child {
+        margin-right: auto;
+      }
+
+      /* Responsive: Show all categories on small screens */
+      @media (max-width: 768px) {
+        #menu-tabs {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+        
+        .menu-tab {
+          min-width: fit-content;
+          font-size: 0.85rem;
+          padding-left: 1rem !important;
+          padding-right: 1rem !important;
+          white-space: nowrap;
+        }
+      }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-400 selection:text-brand-900">
+
+    <!-- Global Effects -->
+    <div class="noise-overlay"></div>
+    <div id="cursor-light" class="hidden md:block"></div>
+
+    <!-- Navbar (Glass) -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300 bg-brand-900/80 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <!-- Logo -->
+                <div class="flex items-center gap-4 cursor-pointer group" onclick="window.scrollTo(0,0)">
+                    <div class="relative w-14 h-14 rounded-full border border-brand-400/30 p-1 group-hover:border-brand-400 transition-colors duration-500">
+                         <!-- Placeholder logo if image fails -->
+                         <div class="w-full h-full rounded-full bg-brand-800 flex items-center justify-center overflow-hidden">
+                             <img src="./logo.jpg" onerror="this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=200'" alt="Fakieh Logo" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                         </div>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-serif font-bold text-white tracking-[0.2em]">FAKIEH</h1>
+                        <span class="text-[9px] text-brand-400 tracking-[0.4em] uppercase block">Luxury Cafe</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8 space-x-reverse">
+                    <a href="#home" class="text-xs uppercase tracking-widest text-brand-100 hover:text-brand-400 transition-colors">الرئيسية</a>
+                    <a href="#menu" class="text-xs uppercase tracking-widest text-brand-100 hover:text-brand-400 transition-colors">القائمة</a>
+                    <a href="#about" class="text-xs uppercase tracking-widest text-brand-100 hover:text-brand-400 transition-colors">القصة</a>
+                    <a href="#gallery" class="text-xs uppercase tracking-widest text-brand-100 hover:text-brand-400 transition-colors">الصور</a>
+                    
+                    <a href="https://maps.app.goo.gl/mosMytBzG9XGPsZC9" target="_blank" class="mr-6 px-6 py-2 border border-brand-400/50 text-brand-400 text-xs font-bold uppercase tracking-widest hover:bg-brand-400 hover:text-brand-900 transition-all duration-300">
+                        زيارة الفرع
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-brand-100 hover:text-brand-400 transition-colors">
+                    <i data-lucide="menu" class="h-8 w-8"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-950 border-t border-white/5 absolute w-full">
+            <div class="px-4 py-6 space-y-4 text-center">
+                <a href="#home" class="block text-sm text-brand-100 hover:text-brand-400 py-2">الرئيسية</a>
+                <a href="#menu" class="block text-sm text-brand-100 hover:text-brand-400 py-2">القائمة</a>
+                <a href="#about" class="block text-sm text-brand-100 hover:text-brand-400 py-2">القصة</a>
+                <a href="#gallery" class="block text-sm text-brand-100 hover:text-brand-400 py-2">الصور</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div id="home" class="relative h-screen w-full overflow-hidden flex items-center justify-center">
+        <!-- Background Video/Image (Parallax ID added) -->
+        <div class="absolute inset-0 overflow-hidden">
+            <img id="hero-bg" class="w-full h-full object-cover opacity-40 scale-110 will-change-transform" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=2000" alt="Atmosphere">
+            <div class="absolute inset-0 bg-gradient-to-b from-brand-900/80 via-transparent to-brand-900"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-brand-900/60 to-brand-900"></div>
+        </div>
+        
+        <!-- Content -->
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto space-y-8 fade-in-up" style="animation-delay: 0.2s;">
+            <div class="inline-flex items-center gap-4 mb-4 opacity-70">
+                <div class="h-[1px] w-12 bg-brand-400"></div>
+                <span class="text-brand-400 text-xs uppercase tracking-[0.4em]">Est. 2026</span>
+                <div class="h-[1px] w-12 bg-brand-400"></div>
+            </div>
+            
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-serif text-white font-medium tracking-tight text-glow leading-none">
+                FAKIEH
+            </h1>
+            <p class="text-xl md:text-2xl text-brand-100/80 font-light tracking-wide max-w-2xl mx-auto">
+                حيث تلتقي القهوة بالفن. تجربة صممت للأذواق الرفيعة في قلب مكة
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-6 justify-center pt-8">
+                <a href="#menu" class="px-8 py-4 bg-brand-400 text-brand-900 font-bold text-sm uppercase tracking-widest hover:bg-white transition-colors duration-300 shadow-[0_0_20px_rgba(176,151,74,0.3)]">
+                    تصفح القائمة
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 animate-bounce">
+            <span class="text-[10px] uppercase tracking-widest text-brand-400">Scroll</span>
+            <div class="w-[1px] h-12 bg-gradient-to-b from-brand-400 to-transparent"></div>
+        </div>
+    </div>
+
+    <!-- Menu Section -->
+    <div id="menu" class="relative py-32 bg-brand-900 overflow-hidden">
+        <!-- Floating Elements (Parallax IDs added) -->
+        <div id="shape-1" class="absolute top-20 right-0 w-96 h-96 bg-brand-400/5 rounded-full blur-[100px] pointer-events-none will-change-transform"></div>
+        <div id="shape-2" class="absolute bottom-20 left-0 w-96 h-96 bg-brand-400/5 rounded-full blur-[100px] pointer-events-none will-change-transform"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-20 space-y-4 reveal-on-scroll">
+                <span class="text-brand-400 text-xs font-bold tracking-[0.3em] uppercase">القائمة المختارة</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-white">تذوق الإبداع</h2>
+            </div>
+
+            <!-- Categories (Scrollable Horizontal) -->
+            <div class="flex overflow-x-auto pb-8 mb-12 gap-4 justify-start md:justify-center no-scrollbar mask-gradient reveal-on-scroll snap-x snap-mandatory scroll-smooth" style="transition-delay: 0.1s; scroll-behavior: smooth;" id="menu-tabs">
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- Menu Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="menu-grid">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured / About Section (Asymmetrical) -->
+    <div id="about" class="py-32 bg-brand-950 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="relative order-2 lg:order-1 reveal-on-scroll">
+                    <div class="absolute -inset-4 border border-brand-400/20 rounded-sm translate-x-4 translate-y-4"></div>
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=800" class="relative w-full grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl">
+                    <div class="absolute -bottom-10 -right-10 bg-brand-800 p-8 shadow-xl border border-white/5 max-w-xs hidden md:block">
+                        <p class="font-serif text-2xl italic text-brand-400">"القهوة هي لغة الحب التي لا تحتاج إلى ترجمة."</p>
+                    </div>
+                </div>
+                
+                <div class="space-y-8 order-1 lg:order-2 reveal-on-scroll" style="transition-delay: 0.2s">
+                    <h2 class="text-5xl md:text-6xl font-serif text-white leading-tight">
+                        قصة <br> <span class="text-brand-400">شغف وتفاصيل</span>
+                    </h2>
+                    <p class="text-brand-100/70 text-lg leading-relaxed font-light text-justify">
+                        في فقيه كافيه، نحن لا نقدم مجرد مشروبات، بل نصنع ذكريات. كل تفصيل في المكان، من الإضاءة الخافتة إلى رائحة البن المحمص، صمم ليأخذك في رحلة بعيدة عن ضجيج العالم.
+                    </p>
+                    <div class="grid grid-cols-2 gap-8 border-t border-white/10 pt-8">
+                        <div>
+                            <span class="text-3xl font-serif text-brand-400 block mb-1">100%</span>
+                            <span class="text-xs text-brand-200 tracking-wider">قهوة مختصة</span>
+                        </div>
+                        <div>
+                            <span class="text-3xl font-serif text-brand-400 block mb-1">∞</span>
+                            <span class="text-xs text-brand-200 tracking-wider">لحظات لا تنسى</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery (Film Strip Style) -->
+    <div id="gallery" class="py-32 bg-brand-900 overflow-hidden">
+        <div class="text-center mb-16 reveal-on-scroll">
+            <h2 class="text-3xl font-serif text-white">معرض الصور</h2>
+        </div>
+        <div class="flex gap-4 animate-scroll whitespace-nowrap px-4 reveal-on-scroll overflow-x-auto no-scrollbar" style="transition-delay: 0.1s" id="gallery-strip">
+            <!-- Images injected here -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-brand-950 border-t border-white/5 py-16 reveal-on-scroll">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-8">
+            <div class="flex justify-center items-center gap-4 opacity-50 hover:opacity-100 transition-opacity">
+                <div class="h-[1px] w-12 bg-white"></div>
+                <!-- Logo fallback in footer too -->
+                <div class="h-8 w-8 rounded-full overflow-hidden border border-brand-400/30">
+                     <img src="./logo.jpg" onerror="this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=200'" class="w-full h-full object-cover">
+                </div>
+                <div class="h-[1px] w-12 bg-white"></div>
+            </div>
+            <div class="flex justify-center gap-8 text-xs tracking-widest text-brand-200">
+                <a href="https://www.instagram.com/fakiehcoffee/" class="hover:text-brand-400 transition-colors">INSTAGRAM</a>
+                <a href="https://www.tiktok.com/@fakiehcoffee" class="hover:text-brand-400 transition-colors">TIKTOK</a>
+               
+            </div>
+            <p class="text-xs text-brand-700">© 2026 Fakieh Cafe. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Spotlight Cursor Logic
+        const cursor = document.getElementById('cursor-light');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // --- Scroll & Parallax Logic ---
+        
+        // 1. Reveal on Scroll Observer
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1, // Trigger when 10% visible
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
+
+        // 2. Parallax Effect
+        let ticking = false;
+        const heroBg = document.getElementById('hero-bg');
+        const shape1 = document.getElementById('shape-1');
+        const shape2 = document.getElementById('shape-2');
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrolled = window.scrollY;
+                    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+                    if (!isReducedMotion) {
+                        if (heroBg) {
+                            heroBg.style.transform = `translateY(${scrolled * 0.4}px) scale(1.1)`;
+                        }
+                        if (shape1) {
+                            shape1.style.transform = `translateY(${scrolled * 0.15}px)`;
+                        }
+                        if (shape2) {
+                            shape2.style.transform = `translateY(${scrolled * -0.1}px)`;
+                        }
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Data & Rendering
+        const DEFAULT_CATEGORIES = [
+          { id: 'all', name: 'الكل' },
+          { id: 'breakfast', name: 'الفطور وجوانب' },
+          { id: 'salads_appetizers', name: 'سلطات ومقبلات' },
+          { id: 'main_courses', name: 'الأطباق الرئيسية' },
+          { id: 'pizza', name: 'بيتزا' },
+          { id: 'dessert', name: 'الحلويات' },
+          { id: 'hot_drinks', name: 'مشروبات ساخنة' },
+          { id: 'tea_pots', name: 'شاي وأباريق' },
+          { id: 'cold_drinks', name: 'مشروبات باردة' },
+          { id: 'juice', name: 'عصائر' },
+          { id: 'extras', name: 'إضافات ومشروبات غازية' },
+          { id: 'shisha', name: 'شيشة' },
+        ];
+
+        // UPDATED MENU ITEMS WITH WORKING UNSPLASH IMAGES FOR ALL
+        const DEFAULT_MENU_ITEMS = [
+            // Breakfast & Sides
+            { id: 'bf1', name: 'فطور فقيه', description: 'Fakieh Breakfast - 860 سعرة', price: '56', category: 'breakfast', image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'bf2', name: 'كرواسون جبنة', description: 'Cheese Croissant - 385 سعرة', price: '15', category: 'breakfast', image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'bf3', name: 'كرواسون سادة', description: 'Plain Croissant - 230 سعرة', price: '13', category: 'breakfast', image: 'https://images.unsplash.com/photo-1623334044303-241021148842?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'bf4', name: 'كرواسون بالبيض', description: 'Egg Croissant - 560 سعرة', price: '19', category: 'breakfast', image: 'https://images.unsplash.com/photo-1510629954389-c1e0da47d414?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'bf5', name: 'كرواسون زعتر', description: 'Zaatar Croissant - 250 سعرة', price: '15', category: 'breakfast', image: 'https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'bf6', name: 'بطاطس بالجبنة', description: 'Cheese Fries - 450 سعرة', price: '23', category: 'breakfast', image: 'https://images.unsplash.com/photo-1573080496987-a199f8cd75ec?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'bf7', name: 'بطاطس حارة', description: 'Spicy Potatoes - 270 سعرة', price: '20', category: 'breakfast', image: 'https://images.unsplash.com/photo-1518013431117-e5952c874f94?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'bf8', name: 'صحن بطاطس', description: 'French Fries - 224 سعرة', price: '18', category: 'breakfast', image: 'https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&q=80&w=600', available: true },
+
+            // Salads & Appetizers
+            { id: 'sa1', name: 'داينمت شرمب', description: 'Dynamite Shrimp - 650 سعرة', price: '50', category: 'salads_appetizers', image: 'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'sa2', name: 'جمبري مقلي', description: 'Fried Shrimp - 380 سعرة', price: '40', category: 'salads_appetizers', image: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'sa3', name: 'سيزر دجاج', description: 'Chicken Caesar Salad - 351 سعرة', price: '29', category: 'salads_appetizers', image: 'https://images.unsplash.com/photo-1550304943-4f24f54ddde9?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'sa4', name: 'تبولة', description: 'Tabbouleh - 189 سعرة', price: '16', category: 'salads_appetizers', image: 'https://images.unsplash.com/photo-1529312266912-b33cf6227e24?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'sa5', name: 'فتوش', description: 'Fattoush - 300 سعرة', price: '23', category: 'salads_appetizers', image: 'https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'sa6', name: 'حمص', description: 'Hummus - 164 سعرة', price: '19', category: 'salads_appetizers', image: 'https://images.unsplash.com/photo-1637949385162-e416fb15b2ce?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'sa7', name: 'ورق عنب', description: 'Warak Enab - 185 سعرة', price: '18', category: 'salads_appetizers', image: 'https://images.unsplash.com/photo-1536761131806-09e80c422c54?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'sa8', name: 'كبه', description: 'Kibbeh - 260 سعرة', price: '11', category: 'salads_appetizers', image: 'https://images.unsplash.com/photo-1594910086208-8df0dc80373e?auto=format&fit=crop&q=80&w=600', available: true },
+
+            // Main Courses
+            { id: 'mc1', name: 'ستيك لحم', description: 'Beef Steak - 433 سعرة', price: '82', category: 'main_courses', image: 'https://images.unsplash.com/photo-1546964124-0cce460f38ef?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'mc2', name: 'برجر لحم و بطاطس', description: 'Beef Burger with Fries - 1100 سعرة', price: '34', category: 'main_courses', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'mc3', name: 'برجر دجاج و بطاطس', description: 'Chicken Burger with Fries - 800 سعرة', price: '29', category: 'main_courses', image: 'https://images.unsplash.com/photo-1594040226829-7f251ab46d80?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'mc4', name: 'فوتشيني دجاج', description: 'Chicken Fettuccine Pasta - 800 سعرة', price: '32', category: 'main_courses', image: 'https://images.unsplash.com/photo-1645228574136-11cb46554b50?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'mc5', name: 'بينك باستا', description: 'Pink Sauce Pasta - 1000 سعرة', price: '34', category: 'main_courses', image: 'https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'mc6', name: 'استريبس', description: 'Chicken Strips with Fries - 1200 سعرة', price: '28', category: 'main_courses', image: 'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&q=80&w=600', available: true },
+
+            // Pizza
+            { id: 'pz1', name: 'بيتزا بيبروني', description: 'Pepperoni Pizza - 285/580 سعرة', price: '36/45', category: 'pizza', image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'pz2', name: 'بيتزا خضروات', description: 'Vegetable Pizza - 145/250 سعرة', price: '36/45', category: 'pizza', image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'pz3', name: 'بيتزا مارجريتا', description: 'Margherita Pizza - 200/320 سعرة', price: '36/40', category: 'pizza', image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'pz4', name: 'بيتزا تشيكن رانش', description: 'Chicken Ranch Pizza - 221/350 سعرة', price: '36/50', category: 'pizza', image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=600', available: true },
+
+            // Dessert
+            { id: 'ds1', name: 'تيراميسو', description: 'Tiramisu - 320 سعرة', price: '20', category: 'dessert', image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ds2', name: 'وافل فرايز', description: 'Waffle Fries - 511 سعرة', price: '24', category: 'dessert', image: 'https://images.unsplash.com/photo-1568051243851-f9b136146945?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ds3', name: 'فقيه كوفي', description: 'Fakieh Coffee - 425 سعرة', price: '36', category: 'dessert', image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ds4', name: 'كيكة عسل', description: 'Honey Cake - 450 سعرة', price: '29', category: 'dessert', image: 'https://images.unsplash.com/photo-1557925923-cd4648e211a0?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ds5', name: 'سان سباستيان', description: 'San Sebastian - 388 سعرة', price: '29', category: 'dessert', image: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ds6', name: 'كاندي', description: 'Candy - 350 سعرة', price: '28', category: 'dessert', image: 'https://images.unsplash.com/photo-1582053433976-25c00369fc93?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ds7', name: 'ميني براوني', description: '5 Mini Brownies - 480 سعرة', price: '19', category: 'dessert', image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ds8', name: 'ميني بسكوت', description: '5 Mini Biscuits - 432 سعرة', price: '19', category: 'dessert', image: 'https://images.unsplash.com/photo-1499636138143-bd630f5cf38b?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ds9', name: 'بانكيك', description: 'Pancakes - 473 سعرة', price: '20', category: 'dessert', image: 'https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ds10', name: 'دبل شوكولاته', description: 'Double Chocolate Cake - 450 سعرة', price: '26', category: 'dessert', image: 'https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ds11', name: 'دولتشي', description: 'Dolce Cake - 350 سعرة', price: '24', category: 'dessert', image: 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ds12', name: 'براوني كيك', description: 'Brownie Cake - 400 سعرة', price: '30', category: 'dessert', image: 'https://images.unsplash.com/photo-1564355808539-22fda35bed7e?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ds13', name: 'تشيز كيك سادة', description: 'Plain Cheesecake - 637 سعرة', price: '25', category: 'dessert', image: 'https://images.unsplash.com/photo-1508737027454-e6454ef45afd?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ds14', name: 'كوكيز حساوي', description: 'Hasawi Cookies - 477 سعرة', price: '13', category: 'dessert', image: 'https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ds15', name: 'كوكيز', description: 'Cookies - 210 سعرة', price: '15', category: 'dessert', image: 'https://images.unsplash.com/photo-1499636138143-bd630f5cf38b?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ds16', name: 'كوكيز أيس كريم', description: 'Ice Cream Cookies - 250 سعرة', price: '23', category: 'dessert', image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ds17', name: 'مني براوني بيكان', description: 'Mini Pecan Brownies - 200 سعرة', price: '15', category: 'dessert', image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ds18', name: 'مولتن كيك', description: 'Molten Lava Cake - 500 سعرة', price: '30', category: 'dessert', image: 'https://images.unsplash.com/photo-1624353365286-3f8d62daad51?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ds19', name: 'كرانشي كيك', description: 'Crunchy Cake - 400 سعرة', price: '29', category: 'dessert', image: 'https://images.unsplash.com/photo-1582053433976-25c00369fc93?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ds20', name: 'سان تيراميسو', description: 'San Tiramisu - 350 سعرة', price: '29', category: 'dessert', image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ds21', name: 'اوبيرا كيك', description: 'Opera Cake - 300 سعرة', price: '25', category: 'dessert', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ds22', name: 'تيراميسو بيكان', description: 'Pecan Tiramisu - 400 سعرة', price: '25', category: 'dessert', image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ds23', name: 'ماتيلدا كيك', description: 'Matilda Cake - 600 سعرة', price: '30', category: 'dessert', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ds24', name: 'بودينج', description: 'Pudding - 300 سعرة', price: '25', category: 'dessert', image: 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ds25', name: 'إضافة أيس كريم', description: 'Add Ice Cream - 50 سعرة', price: '5', category: 'dessert', image: 'https://images.unsplash.com/photo-1505394033641-40c6ad1178d7?auto=format&fit=crop&q=80&w=600', available: true },
+
+            // Hot Drinks
+            { id: 'hd1', name: 'إسبريسو', description: 'Espresso - 1.5 سعرة', price: '11', category: 'hot_drinks', image: './img/1.png', available: true },
+            { id: 'hd2', name: 'إسبريسو دابل', description: 'Double Espresso - 3 سعرة', price: '15', category: 'hot_drinks', image: './img/2.png', available: true },
+            { id: 'hd3', name: 'ميكاتو', description: 'Macchiato - 280 سعرة', price: '19', category: 'hot_drinks', image: './img/3.png', available: true },
+            { id: 'hd4', name: 'كراميل ميكاتو', description: 'Caramel Macchiato - 470 سعرة', price: '19', category: 'hot_drinks', image: './img/4.png', available: true },
+            { id: 'hd5', name: 'كورتادو', description: 'Cortado - 37 سعرة', price: '19', category: 'hot_drinks', image: './img/5.png', available: true }, 
+            { id: 'hd6', name: 'فلات وايت', description: 'Flat White - 90 سعرة', price: '19', category: 'hot_drinks', image: './img/6.png', available: true },
+            { id: 'hd7', name: 'كابتشينو', description: 'Cappuccino - 130 سعرة', price: '19', category: 'hot_drinks', image: './img/7.png', available: true },
+            { id: 'hd8', name: 'هوت شوكليت', description: 'Hot Chocolate - 400 سعرة', price: '20', category: 'hot_drinks', image: './img/8.png', available: true },
+            { id: 'hd9', name: 'قهوة تركي', description: 'Turkish Coffee - 7 سعرة', price: '13', category: 'hot_drinks', image: './img/9.png', available: true },
+            { id: 'hd10', name: 'قهوة تركي دابل', description: 'Double Turkish Coffee - 14 سعرة', price: '18', category: 'hot_drinks', image: './img/10.png', available: true },
+            { id: 'hd11', name: 'قهوة بحليب', description: 'French Coffee - 100 سعرة', price: '17', category: 'hot_drinks', image: './img/11.png', available: true },
+            { id: 'hd12', name: 'أمريكانو', description: 'Americano - 5 سعرة', price: '17', category: 'hot_drinks', image: './img/12.png', available: true },
+            { id: 'hd13', name: 'V60', description: 'V60 Drip Coffee - 19 سعرة', price: '18', category: 'hot_drinks', image: './img/13.png', available: true }, 
+            { id: 'hd14', name: 'ماتشا', description: 'Matcha - 24 سعرة', price: '22', category: 'hot_drinks', image: './img/14.png', available: true },
+            { id: 'hd15', name: 'سبانش لاتيه', description: 'Spanish latte - 100 سعرة', price: '17', category: 'hot_drinks', image: './img/15.png', available: true },
+
+            // Tea & Pots
+            { id: 'tea1', name: 'شاهي أحمر', description: 'Black Tea - 5 سعرة', price: '9', category: 'tea_pots', image: './img/11.png', available: true },
+            { id: 'tea2', name: 'شاهي أخضر', description: 'Green Tea - 2.5 سعرة', price: '10', category: 'tea_pots', image: './img/22.png', available: true },
+            { id: 'tea3', name: 'شاهي بالنعناع', description: 'Mint Tea - 2.5 سعرة', price: '10', category: 'tea_pots', image: './img/33.png', available: true },
+            { id: 'tea4', name: 'شاهي مغربي', description: 'Moroccan Tea - 35 سعرة', price: '12', category: 'tea_pots', image: './img/44.png', available: true },
+            { id: 'tea5', name: 'براد شاهي أحمر', description: 'Black Tea Pot - 20 سعرة', price: '20', category: 'tea_pots', image: './img/55.png', available: true },
+            { id: 'tea6', name: 'براد شاهي أخضر', description: 'Green Tea Pot - 15 سعرة', price: '20', category: 'tea_pots', image: './img/66.png', available: true },
+            { id: 'tea7', name: 'براد شاهي مغربي', description: 'Moroccan Tea Pot - 120 سعرة', price: '25', category: 'tea_pots', image: './img/77.png', available: true },
+            { id: 'tea8', name: 'قهوة سعودية', description: 'Saudi Coffee (Cup) - 3 سعرة', price: '9', category: 'tea_pots', image: './img/99.png', available: true },
+            { id: 'tea9', name: 'دلة قهوة سعودية', description: 'Arabic Coffee Pot - 18 سعرة', price: '29', category: 'tea_pots', image: './img/test1.png', available: true },
+            { id: 'tea10', name: 'قهوة اليوم (صغير)', description: 'Coffee of the day (S) - 15 سعرة', price: '10', category: 'tea_pots', image: './img/1Q.png', available: true },
+            { id: 'tea11', name: 'قهوة اليوم (كبير)', description: 'Coffee of the day (L) - 17 سعرة', price: '12', category: 'tea_pots', image: './img/2Q.png', available: true },
+
+            // Cold Drinks
+            { id: 'cd1', name: 'لاتيه مثلج', description: 'Iced Latte - 130 سعرة', price: '18', category: 'cold_drinks', image: './img/1Z.png', available: true },
+            { id: 'cd2', name: 'سبانيش لاتيه مثلج', description: 'Iced Spanish Latte - 280 سعرة', price: '20', category: 'cold_drinks', image: './img/2Z.png', available: true },
+            { id: 'cd3', name: 'كراميل لاتيه مثلج', description: 'Iced Caramel Latte - 340 سعرة', price: '20', category: 'cold_drinks', image: './img/3Z.png', available: true },
+            { id: 'cd4', name: 'موكا مثلجة', description: 'Iced Mocha - 400 سعرة', price: '20', category: 'cold_drinks', image: './img/4Z.png', available: true },
+            { id: 'cd5', name: 'أمريكانو مثلجة', description: 'Iced Americano - 250 سعرة', price: '17', category: 'cold_drinks', image: './img/5Z.png', available: true },
+            { id: 'cd6', name: 'V60 مثلجة', description: 'Iced V60 Drip Coffee - 10 سعرة', price: '17', category: 'cold_drinks', image: './img/6Z.png', available: true },
+            { id: 'cd7', name: 'كابيتشيو مثلج', description: 'Iced Cappuccino - 3 سعرة', price: '15', category: 'cold_drinks', image: './img/7Z.png', available: true },
+            { id: 'cd8', name: 'كركديه مثلج', description: 'Iced Hibiscus - 220 سعرة', price: '15', category: 'cold_drinks', image: './img/8Z.png', available: true },
+            { id: 'cd9', name: 'شكولاته مثلجة', description: 'Iced Chocolate - 85 سعرة', price: '18', category: 'cold_drinks', image: './img/9Z.png', available: true },
+            { id: 'cd10', name: 'موهيتو', description: 'Mojeto - 16 سعرة', price: '18', category: 'cold_drinks', image: './img/10Z.png', available: true },
+            { id: 'cd11', name: 'شاي مثلج', description: 'Ice tea - 7 سعرة', price: '12', category: 'cold_drinks', image: './img/11Z.png', available: true },
+            { id: 'cd12', name: 'كولد برو', description: 'cold pro - 10 سعرة', price: '23', category: 'cold_drinks', image: './img/12Z.png', available: true },
+
+            // Juice
+            { id: 'ju1', name: 'برتقال', description: 'Orange Juice - 112 سعرة', price: '15/30', category: 'juice', image: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ju2', name: 'مانجو', description: 'Mango Juice - 125 سعرة', price: '15/30', category: 'juice', image: 'https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ju3', name: 'فراوله', description: 'Strawberry Juice - 250 سعرة', price: '15/30', category: 'juice', image: 'https://images.unsplash.com/photo-1588600868508-166299d2558e?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ju4', name: 'ليمون نعناع', description: 'Lemon Mint Juic - 100 سعرة', price: '15/30', category: 'juice', image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ju5', name: 'ليمون', description: 'Lemon Juice - 11 سعرة', price: '15/30', category: 'juice', image: 'https://images.unsplash.com/photo-1596463989140-3b600bd7d824?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ju6', name: 'أفوكادو', description: 'Avocado Juice - 300 سعرة', price: '15/30', category: 'juice', image: 'https://images.unsplash.com/photo-1601039641847-7857b994d704?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ju7', name: 'موز', description: 'Banana Juice - 150 سعرة', price: '15/30', category: 'juice', image: 'https://images.unsplash.com/photo-1603569283847-aa295f0d016a?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ju8', name: 'حبحب', description: 'Watermelon Juice - 46 سعرة', price: '15/30', category: 'juice', image: 'https://images.unsplash.com/photo-1589733955941-5eeaf752f6dd?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ju9', name: 'شمام', description: 'Melon Juice - 60 سعرة', price: '15/30', category: 'juice', image: 'https://images.unsplash.com/photo-1598155523122-38423ab4d621?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ju10', name: 'رمان', description: 'Pomegranate Juice - 135 سعرة', price: '15/30', category: 'juice', image: 'https://images.unsplash.com/photo-1628173497806-0370d0246a48?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ju11', name: 'كوكتيل', description: 'Cocktail - 150 سعرة', price: '15/30', category: 'juice', image: 'https://images.unsplash.com/photo-1556740714-a8395b3bf3ea?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ju12', name: 'كوكتيل طبقات', description: 'Layered Cocktail - 200 سعرة', price: '15/30', category: 'juice', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&q=80&w=600', available: true },
+
+            // Extras & Canned Drinks
+            { id: 'ex1', name: 'مياه غازية', description: 'Sparkling Water - 5 سعرة', price: '13', category: 'extras', image: 'https://images.unsplash.com/photo-1560512823-8db965507d83?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ex2', name: 'مياه صغير', description: 'Water (S) - 5 سعرة', price: '7', category: 'extras', image: 'https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ex3', name: 'مياه كبير', description: 'Water (L) - 5 سعرة', price: '13', category: 'extras', image: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ex4', name: 'كوكاكولا- دايت', description: 'coca-cola / Diet - 1 سعرة', price: '9', category: 'extras', image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ex5', name: 'سبرايت- دايت', description: 'Sprite / Diet - 1 سعرة', price: '9', category: 'extras', image: 'https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ex6', name: 'ريد بول', description: 'Red Bull - 112 سعرة', price: '21', category: 'extras', image: 'https://images.unsplash.com/photo-1596700810756-12c8b7468641?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ex7', name: 'كود ريد', description: 'Code Red - 120 سعرة', price: '12', category: 'extras', image: 'https://images.unsplash.com/photo-1605610996879-1d374d754707?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ex8', name: 'نكهة', description: 'Flavor Shot - - سعرة', price: '5', category: 'extras', image: 'https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ex9', name: 'ميريندا و حمضيات', description: 'Miranda and Citrus Sod - 157 سعرة', price: '9', category: 'extras', image: 'https://images.unsplash.com/photo-1527661591475-527312dd65f5?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'ex10', name: 'بيره', description: 'Malt Beverage - - سعرة', price: '19', category: 'extras', image: 'https://images.unsplash.com/photo-1566933294831-bda0d4811651?auto=format&fit=crop&q=80&w=600', available: true },
+
+            // Shisha
+            { id: 'sh1', name: 'لوف فقيه', description: 'Molasses - Fakieh Special', price: '65', category: 'shisha', image: 'https://images.unsplash.com/photo-1558012679-b148d4232b71?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'sh2', name: 'تفاحتين فاخر', description: 'Double Apple (Premium)', price: '61', category: 'shisha', image: 'https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'sh3', name: 'تفاحتين نخله', description: 'Two Apples (Nakhlah)', price: '61', category: 'shisha', image: 'https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'sh4', name: 'عنب', description: 'Grape', price: '57.5', category: 'shisha', image: 'https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'sh5', name: 'عنب نعناع', description: 'Grape Mint', price: '57.5', category: 'shisha', image: 'https://images.unsplash.com/photo-1585822818968-0857500d0752?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'sh6', name: 'عنب توت', description: 'Grape Berry', price: '57.5', category: 'shisha', image: 'https://images.unsplash.com/photo-1496318447583-f524534e9ce9?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'sh7', name: 'ليمون نعناع', description: 'Lemon Mint', price: '57.5', category: 'shisha', image: 'https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'sh8', name: 'علكه نعناع', description: 'Gum Mint', price: '57.5', category: 'shisha', image: 'https://images.unsplash.com/photo-1626079717156-f28323fc1793?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'sh9', name: 'علكه مستكة', description: 'Gum Mastic', price: '57.5', category: 'shisha', image: 'https://images.unsplash.com/photo-1558012679-b148d4232b71?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'sh10', name: 'توت', description: 'Blueberry', price: '57.5', category: 'shisha', image: 'https://images.unsplash.com/photo-1496318447583-f524534e9ce9?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'sh11', name: 'حبحب', description: 'Watermelon', price: '57.5', category: 'shisha', image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'sh12', name: 'فراولة', description: 'Strawberry', price: '57.5', category: 'shisha', image: 'https://images.unsplash.com/photo-1518635017498-87f514b751ba?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'sh13', name: 'كنتلوب', description: 'Cantaloupe', price: '57.5', category: 'shisha', image: 'https://images.unsplash.com/photo-1598155523122-38423ab4d621?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'sh14', name: 'مستكة', description: 'Mastic', price: '57.5', category: 'shisha', image: 'https://images.unsplash.com/photo-1558012679-b148d4232b71?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'sh15', name: 'حجر إضافي', description: 'Extra Head / Refill', price: '30', category: 'shisha', image: 'https://images.unsplash.com/photo-1527661591475-527312dd65f5?auto=format&fit=crop&q=80&w=600', available: true },
+            { id: 'sh16', name: 'لي طبي', description: 'Disposable Hose', price: '4', category: 'shisha', image: 'https://myvapetastic.com/wp-content/uploads/2021/06/008989.png', available: true },
+        ];
+        
+        const categories = DEFAULT_CATEGORIES;
+        const items = DEFAULT_MENU_ITEMS;
+
+        // Render Categories
+        const tabsContainer = document.getElementById('menu-tabs');
+        let categoryTitle = null;
+
+        categories.forEach(cat => {
+            const btn = document.createElement('button');
+            btn.textContent = cat.name;
+            btn.dataset.category = cat.id;
+            btn.className = `menu-tab flex-shrink-0 px-6 py-2 rounded-full text-xs font-bold border transition-all duration-500 hover:scale-105 ${cat.id === 'all' ? 'bg-brand-400 text-brand-900 border-brand-400 shadow-[0_0_15px_rgba(176,151,74,0.4)]' : 'bg-transparent text-brand-200 border-brand-700 hover:border-brand-400 hover:text-brand-400'}`;
+            btn.onclick = () => {
+                filterMenu(cat.id, btn);
+                // عرض اسم الفئة
+                showCategoryName(cat.name);
+                // تمرير سلس للزر
+                btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            };
+            tabsContainer.appendChild(btn);
+        });
+
+        // دالة عرض اسم الفئة
+        function showCategoryName(categoryName) {
+            // إزالة العنصر القديم إن وجد
+            const oldTitle = document.querySelector('.category-title-popup');
+            if (oldTitle) oldTitle.remove();
+
+            // إنشاء عنصر العنوان
+            const titleEl = document.createElement('div');
+            titleEl.className = 'category-title-popup fixed top-32 left-1/2 -translate-x-1/2 bg-brand-400 text-brand-900 px-8 py-3 rounded-full font-bold text-sm z-40 animate-bounce shadow-[0_0_20px_rgba(176,151,74,0.4)]';
+            titleEl.textContent = categoryName;
+            titleEl.style.animation = 'fadeInDown 0.5s ease-out, fadeOutUp 0.5s ease-out 1.5s forwards';
+            document.body.appendChild(titleEl);
+        }
+
+        // إضافة animations في CSS
+        const styleEl = document.createElement('style');
+        styleEl.textContent = `
+            @keyframes fadeInDown {
+                from { opacity: 0; transform: translateY(-20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            @keyframes fadeOutUp {
+                from { opacity: 1; transform: translateY(0); }
+                to { opacity: 0; transform: translateY(-20px); }
+            }
+        `;
+        document.head.appendChild(styleEl);
+
+        // Render Menu Items (Glassmorphism Style)
+        const gridContainer = document.getElementById('menu-grid');
+        
+        function renderItems(filterCategory) {
+            gridContainer.innerHTML = '';
+            items.forEach((item, index) => {
+                if (filterCategory !== 'all' && item.category !== filterCategory) return;
+                if (!item.available) return;
+
+                const el = document.createElement('div');
+                // Added delay for staggered animation
+                el.style.animationDelay = `${index * 0.05}s`;
+                // Removed fade-in-up to avoid conflict with reveal-on-scroll
+                el.className = `glass-card rounded-xl overflow-hidden group relative flex flex-col reveal-on-scroll`; 
+                
+                el.innerHTML = `
+                    <div class="relative h-80 overflow-hidden">
+                        <img src="${item.image}" alt="${item.name}" loading="lazy" 
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=600';"
+                             class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-90 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-900 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500"></div>
+                        ${item.popular ? '<div class="absolute top-4 left-4 bg-brand-400/90 backdrop-blur-sm text-brand-900 text-[10px] font-bold px-4 py-1.5 uppercase tracking-[0.2em] shadow-lg border border-brand-300">Signature</div>' : ''}
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col relative bg-brand-900/30">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-2xl font-serif font-medium text-brand-50 group-hover:text-brand-400 transition-colors duration-300 leading-tight">${item.name}</h3>
+                            <div class="flex flex-col items-end shrink-0 ml-4">
+                                <span class="text-xl font-serif text-brand-400">${item.price}</span>
+                                <span class="text-[10px] text-brand-300/60 uppercase tracking-widest">SAR</span>
+                            </div>
+                        </div>
+                        <p class="text-brand-100/60 text-sm font-light leading-relaxed mb-6 flex-1">${item.description}</p>
+                        
+                        <div class="flex items-center justify-between mt-auto pt-6 border-t border-white/5 group-hover:border-brand-400/20 transition-colors duration-500">
+                             <span class="text-[10px] uppercase tracking-widest text-brand-400/60 group-hover:text-brand-400 transition-colors">Order Now</span>
+                             <div class="w-8 h-[1px] bg-brand-400/50 group-hover:w-16 transition-all duration-300"></div>
+                        </div>
+                    </div>
+                `;
+                gridContainer.appendChild(el);
+                
+                // Observe the new element for reveal
+                revealObserver.observe(el);
+            });
+        }
+        
+        renderItems('all');
+
+        function filterMenu(category, btn) {
+            // Update Active Tab
+            document.querySelectorAll('.menu-tab').forEach(b => {
+                b.classList.remove('bg-brand-400', 'text-brand-900', 'shadow-[0_0_15px_rgba(176,151,74,0.4)]');
+                b.classList.add('bg-transparent', 'text-brand-200', 'border-brand-700');
+            });
+            btn.classList.remove('bg-transparent', 'text-brand-200', 'border-brand-700');
+            btn.classList.add('bg-brand-400', 'text-brand-900', 'shadow-[0_0_15px_rgba(176,151,74,0.4)]');
+            
+            // Add smooth scroll animation to grid
+            const gridContainer = document.getElementById('menu-grid');
+            gridContainer.style.opacity = '0.5';
+            gridContainer.style.transition = 'opacity 0.3s ease';
+            
+            setTimeout(() => {
+                renderItems(category);
+                gridContainer.style.opacity = '1';
+            }, 150);
+        }
+
+        // Gallery Strip
+        const galleryStrip = document.getElementById('gallery-strip');
+        const galleryImages = [
+             'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=600',
+             'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&q=80&w=600',
+             'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=600',
+             'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&q=80&w=600',
+             'https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?auto=format&fit=crop&q=80&w=600'
+        ];
+        
+        galleryImages.forEach(src => {
+            const div = document.createElement('div');
+            div.className = "inline-block w-80 h-56 rounded-lg overflow-hidden relative group cursor-pointer border border-white/5 hover:border-brand-400 transition-colors duration-300";
+            div.innerHTML = `<img src="${src}" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110">`;
+            galleryStrip.appendChild(div);
+        });
+
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
